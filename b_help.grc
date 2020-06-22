@@ -1,0 +1,2848 @@
+<?xml version='1.0' encoding='utf-8'?>
+<?grc format='1' created='3.7.13'?>
+<flow_graph>
+  <timestamp>Fri May  4 12:19:17 2018</timestamp>
+  <block>
+    <key>options</key>
+    <param>
+      <key>author</key>
+      <value>Homero Ortega Boada</value>
+    </param>
+    <param>
+      <key>window_size</key>
+      <value></value>
+    </param>
+    <param>
+      <key>category</key>
+      <value>comdiguis</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>description</key>
+      <value>Guardando aqui todos los bloques de programacion embebida</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(0, 1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>generate_options</key>
+      <value>hb_qt_gui</value>
+    </param>
+    <param>
+      <key>hier_block_src_path</key>
+      <value>.:</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>b_help</value>
+    </param>
+    <param>
+      <key>max_nouts</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>qt_qss_theme</key>
+      <value></value>
+    </param>
+    <param>
+      <key>realtime_scheduling</key>
+      <value></value>
+    </param>
+    <param>
+      <key>run_command</key>
+      <value>{python} -u {filename}</value>
+    </param>
+    <param>
+      <key>run_options</key>
+      <value>prompt</value>
+    </param>
+    <param>
+      <key>run</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>sizing_mode</key>
+      <value>fixed</value>
+    </param>
+    <param>
+      <key>thread_safe_setters</key>
+      <value></value>
+    </param>
+    <param>
+      <key>title</key>
+      <value>b_help</value>
+    </param>
+    <param>
+      <key>placement</key>
+      <value>(0,0)</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_check_box</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>false</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1064, 12)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>0,0,1,1</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>run_stop</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Inicial/Parar</value>
+    </param>
+    <param>
+      <key>true</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>real</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(232, 4)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>samp_rate</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>32000</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('VCO_hob', 'blk', [], [('0', 'float', 1), ('1', 'float', 1), ('2', 'float', 1)], [('0', 'float', 1)], 'genera una senoidad cuyos parametros pueden ser manipulados por las senales entrantes asi: la primera senal manipula la amplitud; la segunda la frecuencia; la tercera la fase', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import math
+import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):
+    """genera una senoidad cuyos parametros pueden ser manipulados por las senales entrantes asi: la primera senal manipula la amplitud; la segunda la frecuencia; la tercera la fase"""
+    def __init__(self):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='VCO_hob',   # will show up in GRC
+            in_sig=[np.float32, np.float32, np.float32],
+            out_sig=[np.float32]
+        )
+        self.n_m=0 # guarda el ultimo valor de n
+
+    def work(self, input_items, output_items):
+        A=input_items[0]
+        F=input_items[1]
+        P=input_items[2]
+        out=output_items[0]
+        L=len(A)
+        n=np.linspace(self.n_m, self.n_m+L-1,L)
+        self.n_m += L
+        out[:]=A*np.cos(2*math.pi*F*n+P)
+        return len(out)
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(376, 336)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>VCO_hob</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_noise_source_x</key>
+    <param>
+      <key>amp</key>
+      <value>0.1</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(264, 460)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>analog_noise_source_x_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>noise_type</key>
+      <value>analog.GR_GAUSSIAN</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>seed</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_sig_source_x</key>
+    <param>
+      <key>amp</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>freq</key>
+      <value>1000</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(264, 556)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>analog_sig_source_x_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>offset</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate</value>
+    </param>
+    <param>
+      <key>waveform</key>
+      <value>analog.GR_COS_WAVE</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_module</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>source_code</key>
+      <value># this module will be imported in the into your flowgraph
+import numpy
+import math
+#######################################################
+##        Done by Homero Ortega Boada              ##
+##        comdiguis@saber.uis.edu.co                 ##
+##     Universidad Industrial de Santander           ##
+#######################################################
+#######################################################
+##       Constellation map  identification           ##
+#######################################################                  
+# Constellation points are analyzed to determine the 
+# the map used for ordering of the constellation points
+def sum_modulus(a,b,modulus):
+    # realiza una suma de a y b en modulo modulus
+    return (a+b)%modulus
+
+def angle_map(constellation_points):
+    # esta funcion entrega todos los angulos positivos entre 0 y 2pi
+    angles=numpy.angle(constellation_points)
+    return sum_modulus(angles, 2*math.pi, 2*math.pi)
+
+def inverse_map(constellation_points):
+    M=len(constellation_points)
+    angles=angle_map(constellation_points)
+    angles=sum_modulus(angles,-angles[0], 2*math.pi) # giro a agulo cero
+    delta_angle= 2*math.pi/M     # angulo entre puntos
+    cod_inv=numpy.round(angles/delta_angle)
+    cod_inv=cod_inv.astype(numpy.int) #conversion a entero 
+    return cod_inv
+
+def direct_map(constellation_points):
+    M=len(constellation_points)
+    codinv=inverse_map(constellation_points)
+    coddirect=numpy.array([0]*M)
+    for j in range(M):
+        temp=numpy.where(codinv==j)
+        coddirect[j]=temp[0][0]
+    return coddirect
+
+""" # SECCION DE PRUEBAS DEL CODIGO
+import gnuradio.digital as digital
+constelacion=digital.constellation_8psk().points()
+print("constelacion = ", constelacion)
+mapdirect=direct_map(constelacion)
+print("codigo directo = ", mapdirect)
+mapinverse=inverse_map(constelacion)
+print("codigo inverso = ", mapinverse)
+"""
+
+
+
+
+
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(176, 148)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>coding</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_Add_bb', 'blk', [], [('0', 'byte', 1), ('1', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """Suma dos senales tipo char"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_Add_bb',   # will show up in GRC
+            in_sig=[np.int8, np.int8],
+            out_sig=[np.int8]
+        )
+
+    def work(self, input_items, output_items):
+        output_items[0][:] = input_items[0]+input_items[1]
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(568, 120)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_Add</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_M_PAM_decisor', 'blk', [('M', '4'), ('Vp', '4')], [('0', 'float', 1)], [('0', 'byte', 1)], '', ['M', 'Vp'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """M-ary Decisor. Es un decisor para senales M_PAM. VP es el valor pico de la senal entrante"""
+    def __init__(self,M=4, Vp=4):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_M_PAM_decisor',   # will show up in GRC
+            in_sig=[np.float32],
+            out_sig=[np.int8]
+        )
+	self.M=M
+	self.Vp=Vp
+
+    def work(self, input_items, output_items):
+	mpam_con_ruido=input_items[0]*(self.M+1)/(2*self.Vp)
+	mpam_sin_ruido=np.round(mpam_con_ruido)
+
+        output_items[0][:] = mpam_sin_ruido.astype(np.int8)
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(984, 356)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_M_decisor_0</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+    <param>
+      <key>Vp</key>
+      <value>3</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_Multiply_bb', 'blk', [], [('0', 'byte', 1), ('1', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """Multiplica dos senales tipo char"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_Multiply_bb',   # will show up in GRC
+            in_sig=[np.int8, np.int8],
+            out_sig=[np.int8]
+        )
+
+    def work(self, input_items, output_items):
+        output_items[0][:] = input_items[0]*input_items[1]
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(576, 216)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_Multiply</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_VCO_fase_fc', 'blk', [], [('0', 'float', 1), ('1', 'float', 1)], [('0', 'complex', 1)], 'Done by Homero Ortega Boada. Es un VCO dos entradas: \n\tin0 para manipular la fase, in1 para manipular la \n\tmagnitud. En el fondo es el equivalente a un generador\n\tde una senal exponencial compleja. Sobre la configuracion:\n\tcada valor de la senal en in0 es interpretada como la fase\n\tdeseada en radianes. cada valor de in0, es la magnitud deseada', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>
+import numpy as np
+from gnuradio import gr
+
+
+class blk(gr.sync_block):  
+    """Done by Homero Ortega Boada. Es un VCO dos entradas: 
+	in0 para manipular la fase, in1 para manipular la 
+	magnitud. En el fondo es el equivalente a un generador
+	de una senal exponencial compleja. Sobre la configuracion:
+	cada valor de la senal en in0 es interpretada como la fase
+	deseada en radianes. cada valor de in0, es la magnitud deseada"""
+
+    def __init__(self): 
+        gr.sync_block.__init__(self,
+            name='e_VCO_fase_fc',
+	    in_sig=[np.float32, np.float32],
+            out_sig=[np.complex64]
+        )
+    def work(self, input_items, output_items):
+	in0=input_items[0]
+	in1=input_items[1]
+	out0=output_items[0]
+	out0[:] = in1*np.exp(1.j*in0)
+	return len(out0)
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1136, 352)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_VCO_fase_fc_0</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_VCO_fase_fc', 'blk', [], [('0', 'float', 1), ('1', 'float', 1)], [('0', 'complex', 1)], 'Done by Homero Ortega Boada. Es un VCO dos entradas: \n\tin0 para manipular la fase, in1 para manipular la \n\tmagnitud. En el fondo es el equivalente a un generador\n\tde una senal exponencial compleja. Sobre la configuracion:\n\tcada valor de la senal en in0 es interpretada como la fase\n\tdeseada en radianes. cada valor de in0, es la magnitud deseada', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>
+import numpy as np
+from gnuradio import gr
+
+
+class blk(gr.sync_block):  
+    """Done by Homero Ortega Boada. Es un VCO dos entradas: 
+	in0 para manipular la fase, in1 para manipular la 
+	magnitud. En el fondo es el equivalente a un generador
+	de una senal exponencial compleja. Sobre la configuracion:
+	cada valor de la senal en in0 es interpretada como la fase
+	deseada en radianes. cada valor de in0, es la magnitud deseada"""
+
+    def __init__(self): 
+        gr.sync_block.__init__(self,
+            name='e_VCO_fase_fc',
+	    in_sig=[np.float32, np.float32],
+            out_sig=[np.complex64]
+        )
+    def work(self, input_items, output_items):
+	in0=input_items[0]
+	in1=input_items[1]
+	out0=output_items[0]
+	out0[:] = in1*np.exp(1.j*in0)
+	return len(out0)
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(640, 344)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_VCO_fase_fc_0_0</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_bipolar_to_unipolar_bb', 'blk', [], [('0', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """convierte de bipolar a unipolar una senal tipo char"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_bipolar_to_unipolar_bb',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+
+    def work(self, input_items, output_items):
+
+        output_items[0][:] = (input_items[0]+1)/2
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(352, 160)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_bipol_to_unip</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_bipolar_to_unipolar_M_bb', 'blk', [('M', '2')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """convierte de bipolar a unipolar una senal tipo char M-aria"""
+    def __init__(self, M=2):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_bipolar_to_unipolar_M_bb',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+	self.M=M
+    def work(self, input_items, output_items):
+
+        output_items[0][:] = (input_items[0]+(self.M-1))/2
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(344, 252)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_bipol_to_unip_M</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>2</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Complex to Phase', 'blk', [('M', '4')], [('0', 'complex', 1)], [('0', 'float', 1)], 'Autor: Homero Ortega. Permite obtener la fase de una senal compleja. A diferencia de otros bloques de gnuradio, este entrega valores positivos de fase entre 0 y 2pi. M es el numero de posibles fases discretas que trae la senal', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+    """Autor: Homero Ortega. Permite obtener la fase de una senal compleja. A diferencia de otros bloques de gnuradio, este entrega valores positivos de fase entre 0 y 2pi. M es el numero de posibles fases discretas que trae la senal"""
+    def __init__(self,M=4):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='Complex to Phase',   # will show up in GRC
+            in_sig=[np.complex64],
+            out_sig=[np.float32]
+        )
+	self.M=M
+	self.p2=2.*np.pi
+	self.p_margen=self.p2/(M*2.)
+
+    def work(self, input_items, output_items):
+	fases=np.angle(input_items[0]) # tiene valores negativos
+	fases=(fases+self.p_margen +self.p2)% self.p2-self.p_margen
+        output_items[0][:] = fases
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(880, 172)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_c_p</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_vector_mag_fft_ff', 'e_vector_fft_mag_ff', [('N', '128')], [('0', 'float', 128)], [('0', 'float', 128)], 'calcula la fft en magnitud a una senal vectorial de N muestras y emtrega N muestras del espectro. N deber ser potencia de 2', ['N'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+
+class e_vector_fft_mag_ff(gr.sync_block):
+    """calcula la fft en magnitud a una senal vectorial de N muestras y emtrega N muestras del espectro. N deber ser potencia de 2"""
+
+    def __init__(self, N=128):  
+        gr.sync_block.__init__(
+            self,
+            name='e_vector_mag_fft_ff',   
+            in_sig=[(np.float32,N)],
+            out_sig=[(np.float32,N)]
+        )
+        self.N = N
+
+    def work(self, input_items, output_items):
+        in0 = input_items[0]
+    	out0 = output_items[0]
+    	out0[:]=abs(np.fft.fftshift(np.fft.fft(in0,self.N),1)) 
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(776, 68)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_fft_gnu</value>
+    </param>
+    <param>
+      <key>N</key>
+      <value>N</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_vector_fft_ff', 'e_vector_fft_ff', [('N', '128')], [('0', 'float', 128)], [('0', 'float', 128)], 'calcula la fft pura a una senal vectorial de N muestras y emtrega N muestras del espectro. N deber ser potencia de 2', ['N'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+
+class e_vector_fft_ff(gr.sync_block):
+    """calcula la fft pura a una senal vectorial de N muestras y emtrega N muestras del espectro. N deber ser potencia de 2"""
+
+    def __init__(self, N=128):  
+        gr.sync_block.__init__(
+            self,
+            name='e_vector_fft_ff',   
+            in_sig=[(np.float32,N)],
+            out_sig=[(np.float32,N)]
+        )
+        self.N = N
+
+    def work(self, input_items, output_items):
+        in0 = input_items[0]
+    	out0 = output_items[0]
+    	out0[:]=np.fft.fft(in0,self.N) 
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1056, 508)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_fft_gnu_0</value>
+    </param>
+    <param>
+      <key>N</key>
+      <value>N</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('M_PAM to Phase', 'blk', [('M', '4')], [('0', 'byte', 1)], [('0', 'float', 1)], '', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """Traduce M_PAM a valores de fase"""
+    def __init__(self,M=4):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='M_PAM to Phase',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.float32]
+        )
+	self.M=M
+	self.p2=2.*np.pi
+
+    def work(self, input_items, output_items):
+	#fases=input_items[0]*self.p2/self.M
+
+        output_items[0][:] = input_items[0]*self.p2/self.M
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(736, 236)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_mpam_ph</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('phase to M_PAM', 'blk', [('M', '4')], [('0', 'float', 1)], [('0', 'float', 1)], '', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """Traduce fases a valores de M_PAM y aplica decisor mediante redondeo"""
+    def __init__(self,M=4):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='phase to M_PAM',   # will show up in GRC
+            in_sig=[np.float32],
+            out_sig=[np.float32]
+        )
+	self.M=M
+	self.p2=2.*np.pi
+
+    def work(self, input_items, output_items):
+	mpam_con_ruido=input_items[0]*self.M/self.p2
+	mpam_sin_ruido=np.round(mpam_con_ruido)
+
+        output_items[0][:] = mpam_sin_ruido
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(736, 172)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_phase</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('phase to M_PAM', 'blk', [('M', '4')], [('0', 'float', 1)], [('0', 'byte', 1)], '', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """Traduce fases a valores de M_PAM y aplica decisor mediante redondeo"""
+    def __init__(self,M=4):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='phase to M_PAM',   # will show up in GRC
+            in_sig=[np.float32],
+            out_sig=[np.int8]
+        )
+	self.M=M
+	self.p2=2.*np.pi
+
+    def work(self, input_items, output_items):
+	mpam_con_ruido=input_items[0]*self.M/self.p2
+	mpam_sin_ruido=np.round(mpam_con_ruido)
+
+        output_items[0][:] = mpam_sin_ruido.astype(np.int8)
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(888, 228)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_phase_0</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_module</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>source_code</key>
+      <value>################################################################################
+##           Funciones sigulares en Tratamiento de senales y sistemas         ##
+################################################################################
+# Lo siguiente aplica para todas las funciones aqui incluidas:
+# cada funcion busca generar un tipo de forma de pulso rodeada de ceros
+# los resultados se entregan en forma de un vector x
+# Estos son los parametros usados:
+# ntaps: es el tamano del vector y coincide con la duracion de la senal generada
+# nzero: es el numero de ceros que rodean el pulso generado. Si nzero=0 no 
+# habran ceros.
+import numpy as np
+
+def pulse_rect(ntaps,nzeros):
+# Descripcion: esta funcion permite generar un pulso rectangular discreto
+	n_val=ntaps-nzeros             # el numero de valores no iguales a cero
+	x=np.zeros(ntaps)       # crea un vector de tamano ntaps lleno de ceros
+	ntaps_m= int(ntaps/2)                # el punto medio del vector
+	ntaps_i= ntaps_m-int(n_val/2)        # el punto de inicio para los unos
+	x[ntaps_i:ntaps_i+n_val:1]=np.ones(n_val) # llenado de los unos
+	return x
+
+def pulse_ramp(ntaps,nzeros):
+# Descripcion: esta funcion permite generar un pulso en forma de rampa discreto
+	n_val=ntaps-nzeros            
+	x=np.zeros(ntaps)             
+	ntaps_m= int(ntaps/2)         
+	ntaps_i= ntaps_m-int(n_val/2) 
+	x[ntaps_i:ntaps_i+n_ones:1]=np.linspace(0,n_val-1,n_val) 
+	return x
+
+def pulse_delta(ntaps):
+# Descripcion: esta funcion permite generar la funcion impulso o funcion
+# delta de Dirac discreta
+	x=np.zeros(ntaps)                      
+	ntaps_m= int(ntaps/2)                  
+	x[ntaps_m]=1                           
+	return x
+
+def pulse_doublet(ntaps):
+# Descripcion: esta funcion permite generar una funcion doblete unitario discreta
+	x=np.zeros(ntaps)                      
+	ntaps_m= int(ntaps/2)                  
+	x[ntaps_m]=1                           
+	x[ntaps_m+1]=-1                        
+	return x
+
+def pulse_step(ntaps, nzeros):
+# Descripcion: esta funcion permite generar una funcion escalon de Heaviside
+	n_val=ntaps-nzeros                     
+	x=np.zeros(ntaps)                      
+	x[nzeros:ntaps:1]=np.ones(n_val) 
+	return x
+
+def pulse_exp(ntaps,nzeros, C, a):
+# Descripcion: Para generar una funcion exponencial de la forma Ca^n, 
+# donde n es tiempo discreto
+	n_val=ntaps-nzeros                        
+	x=np.zeros(ntaps)                         
+	ntaps_i = nzeros                    
+	n=np.linspace(0,n_val-1,n_val)      
+	x[ntaps_i:ntaps:1]=C*np.power(a,n) 
+	return x
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 180)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_signal</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_unipolar to bipolar_bb', 'blk', [], [('0', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """convierte de unipolar a bipolar una senal tipo char"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_unipolar to bipolar_bb',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+
+    def work(self, input_items, output_items):
+
+        output_items[0][:] = input_items[0]*2-1
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(352, 120)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_unip_to_bipol</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_unipolar to bipolar_M_bb', 'blk', [('M', '2')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """convierte de unipolar a bipolar una senal tipo char M-aria. El parametro M es para indicar si la senal es binaria (M=2), cuaternaria M=4, etc"""
+    def __init__(self,M=2):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_unipolar to bipolar_M_bb',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+	self.M=M
+
+    def work(self, input_items, output_items):
+
+        output_items[0][:] = input_items[0]*2-(self.M-1)
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(344, 204)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_unip_to_bipol_M</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>2</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('positphase', 'blk', [], [('0', 'float', 1)], [('0', 'float', 1)], 'Coverts phase with some negative values to all positive values', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+    """Coverts phase with some negative values to all positive values"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='positphase',   # will show up in GRC
+            in_sig=[np.float32],
+            out_sig=[np.float32]
+        )
+	self.p2=2*np.pi
+
+    def work(self, input_items, output_items):
+        output_items[0][:] = (input_items[0] +self.p2) % self.p2
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(200, 376)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_mean_meter_ff', 'mean_meter', [], [('0', 'float', 1)], [('0', 'float', 1)], 'Descripcion del bloque ', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class mean_meter(gr.sync_block):
+    """Descripcion del bloque """
+    def __init__(self):
+        gr.sync_block.__init__(self,
+            name="e_mean_meter_ff",
+            in_sig=[np.float32],
+            out_sig=[np.float32])
+
+        # variables externas
+	self.contador = 0
+	self.acum=0
+    def work(self, input_items, output_items):
+        # traduccion a algo que podemos manejar mejor
+        in0 = input_items[0]
+        out0 = output_items[0]
+        # Logica principal
+	self.contador += len(in0)
+	self.acum += np.sum(in0)
+	out0[:] = self.acum/self.contador
+        return len(output_items[0])
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(192, 336)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_0</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_diezmad_ff', 'decimator', [('paso', '2')], [('0', 'float', 1)], [('0', 'float', 1)], 'Elimins paso-1 muestras, de manera que solo quedan vigentes las muestras separadas en paso muestras', ['paso'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class decimator(gr.decim_block):
+    """Elimins paso-1 muestras, de manera que solo quedan vigentes las muestras separadas en paso muestras"""
+    def __init__(self, paso=2):
+        gr.decim_block.__init__(self,
+            name="e_diezmad_ff",
+            in_sig=[np.float32],
+            out_sig=[np.float32], decim=paso)
+
+        # variables externas
+	self.paso = paso
+	
+    def work(self, input_items, output_items):
+        # traduccion a algo que podemos manejar mejor
+        in0 = input_items[0]
+        out0 = output_items[0]
+        # Logica principal
+	out0[:] = in0[::self.paso]
+        return len(output_items[0])
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(824, 364)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_0_0</value>
+    </param>
+    <param>
+      <key>paso</key>
+      <value>Kd</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>Ac</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_VCO_frec_fc', 'blk', [('samp_rate', '200000.0'), ('Ac', '1.0')], [('0', 'float', 1)], [('0', 'complex', 1)], 'Done by Homero Ortega Boada', ['Ac', 'samp_rate'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each time this file is saved, GRC will instantiate the first class it finds
+to get ports and parameters of your block. The arguments to __init__  will
+be the parameters. All of them are required to have default values!
+"""
+
+import numpy as np
+from gnuradio import gr
+
+
+class blk(gr.sync_block):  
+    """Done by Homero Ortega Boada"""
+
+    def __init__(self, samp_rate=200000., Ac=1.):  # only default arguments here
+        """arguments to this function show up as parameters in GRC"""
+        gr.sync_block.__init__(
+            self,
+            name='e_VCO_frec_fc',   # will show up in GRC
+            in_sig=[np.float32],
+            out_sig=[np.complex64]
+        )
+        self.samp_rate = float(samp_rate)
+        self.Ac = Ac
+	self.last_t=0.
+
+    def work(self, input_items, output_items):
+	in0=input_items[0]
+	out0=output_items[0]
+        L=len(in0)
+	t=np.arange(L)/self.samp_rate+self.last_t
+	theta=2.*np.pi*in0*t
+	out0[:] = self.Ac*np.exp(1.j*theta)
+	self.last_t += L/self.samp_rate
+	return len(out0)
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(488, 348)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_1</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Plantilla__detallada_para_crear_bloques_cc', 'e_add_cc', [('escala', '0.5')], [('0', 'complex', 1), ('1', 'complex', 1)], [('0', 'complex', 1)], 'Aqui debes explicar como funciona el bloque, los parametros usados. En este caso particular el proposito es que esta clase sirva como ejemplo o plantilla para otras clase. La idea es que cada vez que vayas a crear una clase para un bloque GNU Radio vuelvas aqui ya que no es facil memorizar todos los detalles para crear un bloque GNU Radio. En todo caso, el ejemplo consiste en un bloque para una suma escalada de dos senales complejas. Por lo tanto hay dos senales de entrada y una de salida. Si escala=0.5 lo que se logra es promediar las dos senales', ['escala'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>from gnuradio import gr
+import numpy as np
+ 
+# Es conveninte hacer que nombre de una clase finalice con una o dos letras especiales:
+# -  nombre_ff: cuando en el bloque sus entradas y salidas son senales reales y de tipo flotante
+# -  nombre_f: el bloque solo tiene una entrada o una salida y es una senal real de tipo flotante
+# -  En vez de "f" pueden usarse: c (senal compleja),  i (entera), b (binaria), etc.
+# -  si el es bloque es vectorial, tambien es importante denotarlo, entonces a las letras
+# anteriores le vamos a anteponer las letras vec
+# -  No es conveniento antepoler letras distintivas al nombre de un bloque ya que eso
+# hace que sea mas dificl de encontrarlo con las ayudas de un IDE com Visual Studio Code
+# -  cuando se trate de un bloque jerarquico, los apuntadores a esos bloques los vamos
+# a  senalar conmenzando el apuntador con p_, por ejemplo p_fuente=my.e_generador_fun_f()
+# Un bloque puede ser de varios tipos y eso se define en la clase como:
+# . gr.sync_block: cuando es de tipo sincrono
+# - gr.top_block: cuando es el flujograma principal
+# - gr.decim_block: cuando hay k muestras en la entrada por cada muestra saliente
+# - gr.interp_block: cuando hay k muestras en la salida por cada muestra entrante
+# - gr.hier_block2: cuando el bloque es como un flujograma
+# . gr.basic_block: otros casos
+# Nota: esta plantilla tambien puede ser consultada en: https://github.com/hortegab/comdig_lib_code.git
+
+class e_add_cc(gr.sync_block):  
+    """Aqui debes explicar como funciona el bloque, los parametros usados. En este caso particular el proposito es que esta clase sirva como ejemplo o plantilla para otras clase. La idea es que cada vez que vayas a crear una clase para un bloque GNU Radio vuelvas aqui ya que no es facil memorizar todos los detalles para crear un bloque GNU Radio. En todo caso, el ejemplo consiste en un bloque para una suma escalada de dos senales complejas. Por lo tanto hay dos senales de entrada y una de salida. Si escala=0.5 lo que se logra es promediar las dos senales"""
+ 
+    # Dentro de la funcion __init__(), deben definirse los parametros de configuracion del bloque.
+    # A cada parametro se le da un valor por defecto
+    # ejemplo 1, solo hay un parametro de configuracion: def __init__(self, amp=1.0)
+    # ejemplo 2, hay dos parametros: def __init__(self, amp=1.0, samp_rate= 32000)
+    # - si el bloque es vectorial hay que incluir la variable que marca el tamano del vector
+    # para reconocerla siempre usaremos Nvec
+    # - Nota: los bloques vectoriales se pueden implementar como embebidos, pero hay
+    #          que tener en cuenta que el tamano del vector queda estatico
+    #          sujeto al valor configurado internamente en este codigo. Eso quiza sera resuelto
+    #          en la siguiente version de gnuradio.
+    # por ejemplo def __init__(self, amp=1.0, samp_rate= 32000, Nvec=128)
+    # a continuacion esta el caso de un solo parametro que hemos llamado escala
+    def __init__(self, escala=0.5):
+
+        # En la siguiente funcion debes recordar que usaras:
+        # - sync: cuando tu bloque sea un bloque de tipo sincrono (por cada muestra entrante habra una saliente)
+        # - decim: cuando es un bloque decimador (por cada muestra saliente hay un numero entero de muestras entrantes)
+        # - interp: cuando es un bloque interpolador (por cada muestra entrante hay un numero entero de muestras salientes)
+        # - basic: cuando no hay relacion entre el numero de muestras entrantes y las salientes
+        # self: Es necesario para que la funcion adminita el uso de self en su cuerpo para declarar
+        # variables que pueden ser usadas por otras funciones.
+        # mas en: https://wiki.gnuradio.org/index.php/Guided_Tutorial_GNU_Radio_in_Python#3.3.1._Choosing_a_Block_Type
+        gr.sync_block.__init__(
+            self,
+ 
+            # Lo siguiente es para definir el nombre que tendra nuestro bloque para los usuarios de GRC
+            name='Plantilla__detallada_para_crear_bloques_cc', 
+
+            # A continuacion se definen los tipos de senales de entrada y salida. Veamos algunos ejemplos:
+            # - [np.complex64]: cuando se tiene una sola senal y es compleja
+            # - [np.float32]: cuando se tiene una sola senal y es de tipo real y flotante
+            # - [np.float32, np.complex64]: cuando hay dos senales: una de tipo real flotante y la otra es compleja
+            # - otros casos: int8 o byte (entero de 8 bits, que en C++ se conoce como char)
+            # - No hemos explorado mas casos, pero no es tan sencillo. Uno supondria que otros casos posibles son:
+            # int16 (en C++ se conoce como short), int32, int64. Los dos primeros funcionan, pero int64 no.
+            # - En el caso de un bloque vectorial aqui hay que indicarlo entre (). Veamos ejemplos:
+            #   Ejemplo 1: el bloque tiene una entraga y unsa salida y ambas son reales y vectoriales
+            #    y el tamano del vectorr es Nvec, entonces se declara asi:
+            #   * in_sig=[(np.float32,Nvec)],
+            #   * out_sig=[(np.float32,Nvec)]
+            # En el siguiente ejemplo hay dos entradas complejas y una salida real. Todas tipo stream 
+            in_sig=[np.complex64,np.complex64], 
+            out_sig=[np.complex64]
+        )
+ 
+        # las variables que entran como parametros del bloque deben ser declaradas nuevamente asi:
+        self.escala=escala
+ 
+        # abajo se puede escribir lo que se le antoje al programador, por ejemplo:
+        # self.coef=1.0: define la variable global coef y le asigna el valor 1.0
+        # self significa que es una variable global, que se puede invocar directamente desde otras funciones.
+        # En todo caso, para las cosas que se definan aqui hay que tener en cuenta que:
+        # -  esto es parte del constructor de la clase, por lo tanto, por cada bloque que se cree con esta clase
+        #    estas cosas se invocaran solo una vez
+        # -  Se supone que lo que se cree aqui es para ser usado, de manera que deberia ser usado en work()
+        # A continuacion vamos a suponer que necesitamos usar constante  coef=1.0
+        self.coef = 1.0
+ 
+    # La funcion work() siempre debe estar presente en un bloque. Es alli donde estara la logica del bloque 
+    # Es importante que tengas en cuenta lo siguiente:
+    # - Para las senales tipo stream se tiene que:
+    #    * input_items: es un arreglo de MxN. M es el numero de entradas, N el numero de muestras de la senal
+    #    * in0=input_items[0]: es un vector de longitud N, por lo tanto trae N muestras de una senal
+    #    * in1=input_items[1]: es un vector de longitud N, por lo tanto trae N muestras de una segunda senal
+    #    * M esta definido por la cantidad de entradas que tiene el bloque, es decir, lo declarado arriba en in_sig
+    #    * N va cambiando con cada nueva rafaga de muestras, de modo que es un valor desconocido
+    #        se puede calcular como N=len(input_items[0])
+    # - Si el bloque es de tipo vectorial, tenemos que el bloque input_items es un array MxLxNvec
+    #    * M hace referencia a las senales de entrada (representa el fondo de un cubo)
+    #    * L Al numero de paquetes recibidos (representa la altura del cubo)
+    #    * Nvec al numero de muestras por vector (representa el ancho del cubo)
+    #    * A cada entrada le corresponde una matriz LxNvec, por ejemplo para la entrada cero tenmos
+    #    * in0=input_items[0] es una matriz LxNvec, es decir una senal que trae L vectores de Nvec muestras
+    #    * Por tanto in0[0] es el primer vector de muestras de la senal, in0[1] el segundo, etc.
+    # En el caso de output_items, aplica lo mismo dicho para input_items, pero con las senales
+    # de salida y lo definido para out_sig
+    # el "self" en la declaracion creo que es para que la funcion acepte el uso de self internamente
+    def work(self, input_items, output_items):
+        in0 = input_items[0]
+        in1 = input_items[1]
+        out0 = output_items[0]
+        out0[:]=(in0+in1)*self.escala/self.coef
+        return len(out0)
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>escala</key>
+      <value>0.5</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(480, 480)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_2</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Sum Mod', 'blk', [('M', '4'), ('sumando', '1')], [('0', 'byte', 1)], [('0', 'byte', 1)], 'Suma por mudulo M', ['M', 'sumando'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each time this file is saved, GRC will instantiate the first class it finds
+to get ports and parameters of your block. The arguments to __init__  will
+be the parameters. All of them are required to have default values!
+"""
+
+import numpy as np
+from gnuradio import gr
+
+
+class blk(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
+    """Suma por mudulo M"""
+
+    def __init__(self, M=4, sumando=1):  # only default arguments here
+        """arguments to this function show up as parameters in GRC"""
+        gr.sync_block.__init__(
+            self,
+            name='Sum Mod',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+        # if an attribute with the same name as a parameter is found,
+        # a callback is registered (properties work, too).
+        self.M = M
+	self.sumando=sumando
+
+    def work(self, input_items, output_items):
+        """suma en modulo M"""
+        output_items[0][:] = (input_items[0] + self.sumando%self.M)%self.M
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(40, 276)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_3</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+    <param>
+      <key>sumando</key>
+      <value>3</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Gray Code Converter', 'blk', [], [('0', 'byte', 1)], [('0', 'byte', 1)], 'Gray Code Converter. Supongamos que tienes una senal dada en simbolos M_PAM, pero necesitas que esos valores M-PAM se expresen en codigo Gray. Esta seria la solucion', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each time this file is saved, GRC will instantiate the first class it finds
+to get ports and parameters of your block. The arguments to __init__  will
+be the parameters. All of them are required to have default values!
+"""
+
+import numpy as np
+from gnuradio import gr
+
+
+class blk(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
+    """Gray Code Converter. Supongamos que tienes una senal dada en simbolos M_PAM, pero necesitas que esos valores M-PAM se expresen en codigo Gray. Esta seria la solucion"""
+
+    def __init__(self):  # only default arguments here
+        """arguments to this function show up as parameters in GRC"""
+        gr.sync_block.__init__(
+            self,
+            name='Gray Code Converter',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+        # if an attribute with the same name as a parameter is found,
+        # a callback is registered (properties work, too).
+        
+
+    def work(self, input_items, output_items):
+        """la conversion a gray code"""
+        output_items[0][:] = input_items[0] ^ (input_items[0] &gt;&gt; 1)
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(-64, 240)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_4</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_module</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>source_code</key>
+      <value>import math
+import numpy as np
+# Cada funcion siguinete es una forma de pulso para una senal digital
+# Los parametros comunmente usados son:
+# Sps (Samples per simbol): Duracion de un simbolo en tiempo discreto
+# ntaps: es el numero de muestras a generar por simbolo. Esto debido a que,
+# en la practica, un simbolo puede invadir a otros simbolos (ISI), asi que
+# las muestras de un simbolo se pueden expandir mas alla de Sps
+
+# Bipolar non return to zero level signal
+def B_NRZ_L(Sps):
+    return Sps*[1.,]
+##  Forma sinc 
+def sinc(Sps,ntaps):
+    n=np.linspace(-int(ntaps/2), int(ntaps/2-1),ntaps)
+    h=np.sinc(n/Sps)
+    return h
+# forma diente se sierra
+def saw(Sps):
+    return np.linspace(0,Sps-1,Sps)	
+# Bipolar non return to zero signal
+def RZ(Sps):
+    h=Sps*[1.,]
+    Sps_m=int(Sps/2)
+    h[Sps_m+1:Sps:1]=np.zeros(Sps-Sps_m)
+    return h
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 220)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>formas</value>
+    </param>
+  </block>
+  <block>
+    <key>qtgui_const_sink_x</key>
+    <param>
+      <key>autoscale</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>axislabels</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(816, 596)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>grid</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>qtgui_const_sink_x_0</value>
+    </param>
+    <param>
+      <key>legend</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>alpha1</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color1</key>
+      <value>"blue"</value>
+    </param>
+    <param>
+      <key>label1</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker1</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>style1</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>width1</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha10</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color10</key>
+      <value>"red"</value>
+    </param>
+    <param>
+      <key>label10</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker10</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>style10</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>width10</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha2</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color2</key>
+      <value>"red"</value>
+    </param>
+    <param>
+      <key>label2</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker2</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>style2</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>width2</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha3</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color3</key>
+      <value>"red"</value>
+    </param>
+    <param>
+      <key>label3</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker3</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>style3</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>width3</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha4</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color4</key>
+      <value>"red"</value>
+    </param>
+    <param>
+      <key>label4</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker4</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>style4</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>width4</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha5</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color5</key>
+      <value>"red"</value>
+    </param>
+    <param>
+      <key>label5</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker5</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>style5</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>width5</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha6</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color6</key>
+      <value>"red"</value>
+    </param>
+    <param>
+      <key>label6</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker6</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>style6</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>width6</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha7</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color7</key>
+      <value>"red"</value>
+    </param>
+    <param>
+      <key>label7</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker7</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>style7</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>width7</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha8</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color8</key>
+      <value>"red"</value>
+    </param>
+    <param>
+      <key>label8</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker8</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>style8</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>width8</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha9</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color9</key>
+      <value>"red"</value>
+    </param>
+    <param>
+      <key>label9</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker9</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>style9</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>width9</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>name</key>
+      <value>""</value>
+    </param>
+    <param>
+      <key>nconnections</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>size</key>
+      <value>1024</value>
+    </param>
+    <param>
+      <key>tr_chan</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>tr_level</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>tr_mode</key>
+      <value>qtgui.TRIG_MODE_FREE</value>
+    </param>
+    <param>
+      <key>tr_slope</key>
+      <value>qtgui.TRIG_SLOPE_POS</value>
+    </param>
+    <param>
+      <key>tr_tag</key>
+      <value>""</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>update_time</key>
+      <value>0.10</value>
+    </param>
+    <param>
+      <key>xmax</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>xmin</key>
+      <value>-2</value>
+    </param>
+    <param>
+      <key>ymax</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>ymin</key>
+      <value>-2</value>
+    </param>
+  </block>
+  <block>
+    <key>qtgui_time_sink_x</key>
+    <param>
+      <key>autoscale</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>axislabels</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>ctrlpanel</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>entags</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(824, 476)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>grid</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>qtgui_time_sink_x_0</value>
+    </param>
+    <param>
+      <key>legend</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>alpha1</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color1</key>
+      <value>"blue"</value>
+    </param>
+    <param>
+      <key>label1</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker1</key>
+      <value>-1</value>
+    </param>
+    <param>
+      <key>style1</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>width1</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha10</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color10</key>
+      <value>"blue"</value>
+    </param>
+    <param>
+      <key>label10</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker10</key>
+      <value>-1</value>
+    </param>
+    <param>
+      <key>style10</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>width10</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha2</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color2</key>
+      <value>"red"</value>
+    </param>
+    <param>
+      <key>label2</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker2</key>
+      <value>-1</value>
+    </param>
+    <param>
+      <key>style2</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>width2</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha3</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color3</key>
+      <value>"green"</value>
+    </param>
+    <param>
+      <key>label3</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker3</key>
+      <value>-1</value>
+    </param>
+    <param>
+      <key>style3</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>width3</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha4</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color4</key>
+      <value>"black"</value>
+    </param>
+    <param>
+      <key>label4</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker4</key>
+      <value>-1</value>
+    </param>
+    <param>
+      <key>style4</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>width4</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha5</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color5</key>
+      <value>"cyan"</value>
+    </param>
+    <param>
+      <key>label5</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker5</key>
+      <value>-1</value>
+    </param>
+    <param>
+      <key>style5</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>width5</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha6</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color6</key>
+      <value>"magenta"</value>
+    </param>
+    <param>
+      <key>label6</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker6</key>
+      <value>-1</value>
+    </param>
+    <param>
+      <key>style6</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>width6</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha7</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color7</key>
+      <value>"yellow"</value>
+    </param>
+    <param>
+      <key>label7</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker7</key>
+      <value>-1</value>
+    </param>
+    <param>
+      <key>style7</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>width7</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha8</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color8</key>
+      <value>"dark red"</value>
+    </param>
+    <param>
+      <key>label8</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker8</key>
+      <value>-1</value>
+    </param>
+    <param>
+      <key>style8</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>width8</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>alpha9</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>color9</key>
+      <value>"dark green"</value>
+    </param>
+    <param>
+      <key>label9</key>
+      <value></value>
+    </param>
+    <param>
+      <key>marker9</key>
+      <value>-1</value>
+    </param>
+    <param>
+      <key>style9</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>width9</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>name</key>
+      <value>""</value>
+    </param>
+    <param>
+      <key>nconnections</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>size</key>
+      <value>1024</value>
+    </param>
+    <param>
+      <key>srate</key>
+      <value>samp_rate</value>
+    </param>
+    <param>
+      <key>stemplot</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>tr_chan</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>tr_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>tr_level</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>tr_mode</key>
+      <value>qtgui.TRIG_MODE_FREE</value>
+    </param>
+    <param>
+      <key>tr_slope</key>
+      <value>qtgui.TRIG_SLOPE_POS</value>
+    </param>
+    <param>
+      <key>tr_tag</key>
+      <value>""</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>update_time</key>
+      <value>0.10</value>
+    </param>
+    <param>
+      <key>ylabel</key>
+      <value>Amplitude</value>
+    </param>
+    <param>
+      <key>yunit</key>
+      <value>""</value>
+    </param>
+    <param>
+      <key>ymax</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>ymin</key>
+      <value>-1</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_module</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>source_code</key>
+      <value>import math
+import numpy
+#######################################################
+##        Hecho por Homero Ortega Boada              ##
+##        comdiguis@saber.uis.edu.co                 ##
+##     Universidad Industrial de Santander           ##
+#######################################################
+
+#######################################################
+##               Forma rectangular                   ##
+#######################################################                       
+def rect(Sps):
+    return Sps*[1.,]
+
+#######################################################
+##               Forma de Nyquist                    ##
+#######################################################                       
+def nyq(Sps,ntaps):
+    n=numpy.linspace(-int(ntaps/2), int(ntaps/2-1),ntaps)
+    h=numpy.sinc(n/Sps)
+#    return h/numpy.amax(h)
+    return h
+#######################################################
+##               Forma Coseno Alzado                 ##
+#######################################################                       
+def rcos(Sps,ntaps,beta):
+    if beta==0:
+        h=nyq(Sps,ntaps)
+    else:
+        h=ntaps*[0,]
+        for n in range(ntaps):
+            k=n-ntaps/2. # esto es para que h[n] quede centrada en la mitad del vector
+            if abs(k)==Sps/(2.*beta):
+                h[n]=numpy.sinc(1./(2.*beta))*math.pi/4.
+            else:
+                h[n]=numpy.sinc(k/Sps)*math.cos(beta*k*math.pi/Sps)/(1.-(2.*beta*k/Sps)**2)                
+    Amp=numpy.amax(h)
+    return h/Amp
+#######################################################
+##            Forma Raiz de Coseno Alzado            ##
+#######################################################                       
+
+def rrcos(Sps,ntaps,beta):
+    if beta==0:
+        h=nyq(Sps,ntaps)
+    else:
+        h=ntaps*[0,]
+        beta4=4.*beta
+        for n in range(ntaps):
+            k=n-ntaps/2. # esto es para que h[n] quede centrada en la mitad del vector
+            if k==0:
+                h[n]=1+beta*(4./math.pi-1.)
+            elif abs(k)==Sps/beta4:
+                ha=(1.+2./math.pi)*math.sin(math.pi/beta4)
+                hb=(1.-2./math.pi)*math.cos(math.pi/beta4)
+                h[n]=(ha+hb)*beta/math.sqrt(2.)
+            else:
+                ks=k/Sps
+                kspi=math.pi*ks
+                Num=math.sin(kspi*(1-beta))+beta4*ks*math.cos(kspi*(1+beta))
+                Den=kspi*(1.-(beta4*ks)**2)
+                h[n]=Num/Den                
+    Amp=numpy.amax(h)
+    return h/Amp
+########################################################
+##     Bipolar non return to zero level signal        ##
+########################################################
+def B_NRZ_L(Sps):
+    return Sps*[1.,]
+
+########################################################
+##  Forma sinc . Es la misma nyq() que aparece arriba ##
+########################################################
+def sinc(Sps,ntaps):
+    n=np.linspace(-int(ntaps/2), int(ntaps/2-1),ntaps)
+    h=np.sinc(n/Sps)
+    return h
+########################################################
+##              forma diente se sierra                ##
+########################################################
+def saw(Sps):
+    return np.linspace(0,Sps-1,Sps)	
+########################################################
+#         Bipolar non return to zero signal           ##
+########################################################
+def RZ(Sps):
+    h=Sps*[1.,]
+    Sps_m=int(Sps/2)
+    h[Sps_m+1:Sps:1]=np.zeros(Sps-Sps_m)
+    return h
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 148)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>wform</value>
+    </param>
+  </block>
+  <connection>
+    <source_block_id>analog_noise_source_x_0</source_block_id>
+    <sink_block_id>epy_block_0_2</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_sig_source_x_0</source_block_id>
+    <sink_block_id>epy_block_0_2</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>e_c_p</source_block_id>
+    <sink_block_id>e_phase</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0_2</source_block_id>
+    <sink_block_id>qtgui_const_sink_x_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>epy_block_0_2</source_block_id>
+    <sink_block_id>qtgui_time_sink_x_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+</flow_graph>
