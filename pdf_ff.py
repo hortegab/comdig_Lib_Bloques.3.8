@@ -29,7 +29,7 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
         self.N_hist=0. #numero de histogramas procesados
         
     def work(self, input_items, output_items):
-        
+     
         x=input_items[0] # las muestras entrantes a analizar
         h=np.histogram(x,bins=self.N, range=(self.Xmin, self.Xmax)) # h[0] es el histograma propiamente, h[1] los bins
         hist_dist=scipy.stats.rv_histogram(h) # objeto que identifica muchos parametros de un histograma incluyento pdf

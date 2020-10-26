@@ -6,7 +6,7 @@ class blk(gr.sync_block):
     def __init__(self,):  # only default arguments here
         gr.sync_block.__init__(
             self,
-            name='e_bipolar_to_unipolar_bb',   # will show up in GRC
+            name='e_bipol_to_unip',   # will show up in GRC
             in_sig=[np.int8],
             out_sig=[np.int8]
         )

@@ -893,6 +893,42 @@ blocks:
     coordinate: [-64, 240]
     rotation: 0
     state: disabled
+- name: epy_block_0_5
+  id: epy_block
+  parameters:
+    Sps: Sps
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
+      \ GRC will instantiate the first class it finds\nto get ports and parameters\
+      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
+      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
+      from gnuradio import gr\n\n\nclass blk(gr.decim_block):  # other base classes\
+      \ are basic_block, decim_block, interp_block\n    \"\"\"Este bloque realiza\
+      \ un diezmado asi: cada Sps muestras solo pasa una\"\"\"\n\n    def __init__(self,\
+      \ Sps=8):  # only default arguments here\n        \"\"\"arguments to this function\
+      \ show up as parameters in GRC\"\"\"\n        gr.decim_block.__init__(\n   \
+      \         self,\n            name='e_diezmador_cc',   # will show up in GRC\n\
+      \            in_sig=[np.complex64],\n            out_sig=[np.complex64], decim\
+      \ = Sps\n        )\n        # if an attribute with the same name as a parameter\
+      \ is found,\n        # a callback is registered (properties work, too).\n  \
+      \      self.Sps = Sps\n\n    def work(self, input_items, output_items):\n  \
+      \      \"\"\"example: multiply with constant\"\"\"\n        in0 = input_items[0]\n\
+      \        out = output_items[0]\n        out[:] = in0[::self.Sps]\n        return\
+      \ len(output_items[0])\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: '(''e_diezmador_cc'', ''blk'', [(''Sps'', ''8'')], [(''0'', ''complex'',
+      1)], [(''0'', ''complex'', 1)], ''Este bloque realiza un diezmado asi: cada
+      Sps muestras solo pasa una'', [''Sps''])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1138, 273]
+    rotation: 180
+    state: disabled
 - name: formas
   id: epy_module
   parameters:
