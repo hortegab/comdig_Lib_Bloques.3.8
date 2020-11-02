@@ -407,7 +407,7 @@ blocks:
     label9: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: Titulo
+    name: Autocorrelation  Function
     nconnections: '1'
     ref_level: '0'
     showports: 'True'

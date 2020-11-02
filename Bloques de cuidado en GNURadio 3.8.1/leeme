@@ -1,0 +1,4 @@
+Los bloques que aparecen en esta carpeta tienen las siguientes caracteristicas:
+1) son bloques jerarquicos que incluyen bloques "Python block" y/o "Python Module"
+2) No se dejan instalar de manera tan sencilla como otros bloques, ya que cada pYhton block y cada Python Module genera un.py, pero resulta almacenado en la misma carpeta donde está el grc y no en la carpeta definitiva de gnuradio que es: /home/usuario/.grc_gnuradio/, donde usuario es el nombre del usuario Ubuntu.
+En el Readme principal se explica como lograr instalar todo bien.

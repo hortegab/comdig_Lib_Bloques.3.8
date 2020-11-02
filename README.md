@@ -8,10 +8,21 @@ comdig_Lib_Bloques.3.8 es una libreria de bloques jerarquicos para GNU Radio. Ha
 
 Si esos requisitos no se cumplen, sigue las instrucciones que señala el Readme del OOT E3TRadio3.8 en este enlace: https://github.com/hortegab/comdig_Lib_OOT_E3TRadio.3.8.git
 
-# LA INSTALACION
+# LA INSTALACION PRINCIPAL
 - No hay que hacer una instalación por terminal de comandos
 - Simplemente, abra GRC de GNURadio e instale bloque por bloque siguiendo este proceso:
   -- busca y abre el flujograma del bloque, lo corres. Eso es todo
+
+# LA INSTALACION DE "Bloques de cuidado en GNURadio 3.8.1"
+- Se refiere a los bloques que se encuentran en la carpeta "Bloques de cuidado en GNURadio 3.8.1"
+- Lo que esos bloques jerarquicos tienen de particular es que incluyen uno o más bloques "Python Module" y/o "Python Block". Al correrlo de manera tradicional, un Python Module o un Python Block genera un .py que se almacena en el mismo lugar de donde ha sido leido el bloque jerarquico. Pero el lugar donde GNU Radio lo necesita es en "/home/usuario/.grc_gnuradio/" , donde usuario es el nombre del usuario Ubuntu.
+- Una manera de hacer una instalación exitosa es la siguiente:
+  * pase una copiaa de todos los bloques que desee instalar de la carpeta "Bloques de cuidado en GNURadio 3.8.1" a la carpeta "/home/usuario/.grc_gnuradio/" , donde usuario es el nombre del usuario Ubuntu.
+  * desde GNURadio vaya a la carpeta  "/home/usuario/.grc_gnuradio/", desde allí llame cada uno de los bloques jerarquicos a instalar y corralos  uno por uno.
+  
+# LA INSTALACION DE "Bloques Fatales"
+- Aquí se tienen unos bloques que definitivamente no pueden ser instalados en GNURadio 3.8.1 ya que usan elementos que han quedado obsoletos con esa versión de GNURadio
+- El consejo es simple: no insista en instalarlos, olvídese de que existen. Si se llegaren a necesitar es necesario pensar en una manera de implementarlos con elementos de GNURadio 3.8.1
 
 # LA COMPROBACION
 - Actualiza librerias del GRC: oprime el ícono de la fecha circular de actualización "Reload Blocks"
