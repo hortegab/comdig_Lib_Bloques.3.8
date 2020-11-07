@@ -115,7 +115,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [248, 284]
+    coordinate: [225, 288]
     rotation: 0
     state: enabled
 - name: blocks_add_xx_0
@@ -152,7 +152,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [248, 204]
+    coordinate: [249, 203]
     rotation: 0
     state: enabled
 - name: import_0_1
@@ -228,7 +228,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [520, 178]
+    coordinate: [538, 174]
     rotation: 0
     state: enabled
 - name: pad_sink_0
@@ -246,7 +246,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [704, 220]
+    coordinate: [745, 222]
     rotation: 0
     state: enabled
 - name: pad_source_0
@@ -266,7 +266,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [0, 204]
+    coordinate: [20, 202]
     rotation: 0
     state: enabled
 - name: samp_rate

@@ -8,7 +8,7 @@ options:
     description: Guardando aqui todos los bloques de programacion embebida
     gen_cmake: 'On'
     gen_linking: dynamic
-    generate_options: hb_qt_gui
+    generate_options: hb
     hier_block_src_path: '.:'
     id: b_help
     max_nouts: '0'
@@ -111,7 +111,7 @@ blocks:
     bus_structure: null
     coordinate: [264, 460]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: analog_sig_source_x_0
   id: analog_sig_source_x
   parameters:
@@ -133,7 +133,7 @@ blocks:
     bus_structure: null
     coordinate: [264, 556]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: coding
   id: epy_module
   parameters:
@@ -169,7 +169,7 @@ blocks:
     bus_structure: null
     coordinate: [176, 148]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: e_Add
   id: epy_block
   parameters:
@@ -538,7 +538,7 @@ blocks:
     bus_structure: null
     coordinate: [16, 180]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: e_unip_to_bipol
   id: epy_block
   parameters:
@@ -825,7 +825,7 @@ blocks:
     bus_structure: null
     coordinate: [480, 480]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: epy_block_0_3
   id: epy_block
   parameters:
@@ -854,7 +854,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [40, 276]
+    coordinate: [26, 295]
     rotation: 0
     state: disabled
 - name: epy_block_0_4
@@ -890,7 +890,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [-64, 240]
+    coordinate: [21, 252]
     rotation: 0
     state: disabled
 - name: epy_block_0_5
@@ -929,6 +929,51 @@ blocks:
     coordinate: [1138, 273]
     rotation: 180
     state: disabled
+- name: epy_block_0_6
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
+      \ GRC will instantiate the first class it finds\nto get ports and parameters\
+      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
+      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
+      from gnuradio import gr\n\n\nclass blk(gr.sync_block):  # other base classes\
+      \ are basic_block, decim_block, interp_block\n    \"\"\"Hecho por Homero Ortega\
+      \ Boada, UIS 2020. Entrega como salida 1 si la entrada supera el umbral cero,\
+      \ pero -1 si no lo supera. Tanto la entrada como la salida es un valor de tipo\
+      \ float. Se ha logrado vectorizar la operacion asi: al vector de entrada in0\
+      \ se le aplica un limitador entre 0 y 1. Osea que los valores mayores a 1 se\
+      \ convierten a 1, los menores de cero a cero, con lo cual tendremos valores\
+      \ entre cero y 1. Luego se aplica un redondeo hacia arriba, con lo cual solo\
+      \ tendremos 0s o 1s. Luego se multiplica todo por2 y se resta 1, con lo cual\
+      \ solo tendremos -1s y 1s\"\"\"\n\n    def __init__(self):  # only default arguments\
+      \ here\n        \"\"\"arguments to this function show up as parameters in GRC\"\
+      \"\"\n        gr.sync_block.__init__(\n            self,\n            name='e_bipolar_decisor_ff',\
+      \   # will show up in GRC\n            in_sig=[np.float32],\n            out_sig=[np.float32])\n\
+      \        #self.Umbral=Umbral\n\n    def work(self, input_items, output_items):\n\
+      \        in0 = input_items[0]\n        out = output_items[0]\n        # Signal\
+      \ processing\n        out[:] = np.ceil(np.clip(in0,0,1))*2-1\n        #out[:]\
+      \ = [float(v>self.Umbral) for v in in0]\n        return len(output_items[0])\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: '(''e_bipolar_decisor_ff'', ''blk'', [], [(''0'', ''float'', 1)], [(''0'',
+      ''float'', 1)], ''Hecho por Homero Ortega Boada, UIS 2020. Entrega como salida
+      1 si la entrada supera el umbral cero, pero -1 si no lo supera. Tanto la entrada
+      como la salida es un valor de tipo float. Se ha logrado vectorizar la operacion
+      asi: al vector de entrada in0 se le aplica un limitador entre 0 y 1. Osea que
+      los valores mayores a 1 se convierten a 1, los menores de cero a cero, con lo
+      cual tendremos valores entre cero y 1. Luego se aplica un redondeo hacia arriba,
+      con lo cual solo tendremos 0s o 1s. Luego se multiplica todo por2 y se resta
+      1, con lo cual solo tendremos -1s y 1s'', [])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [33, 373]
+    rotation: 180
+    state: disabled
 - name: formas
   id: epy_module
   parameters:
@@ -952,7 +997,7 @@ blocks:
     bus_structure: null
     coordinate: [16, 220]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: qtgui_const_sink_x_0
   id: qtgui_const_sink_x
   parameters:
@@ -1044,7 +1089,7 @@ blocks:
     bus_structure: null
     coordinate: [816, 596]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: qtgui_time_sink_x_0
   id: qtgui_time_sink_x
   parameters:
@@ -1141,7 +1186,7 @@ blocks:
     bus_structure: null
     coordinate: [824, 476]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: wform
   id: epy_module
   parameters:
@@ -1192,7 +1237,7 @@ blocks:
     bus_structure: null
     coordinate: [16, 148]
     rotation: 0
-    state: enabled
+    state: disabled
 
 connections:
 - [analog_noise_source_x_0, '0', epy_block_0_2, '0']
