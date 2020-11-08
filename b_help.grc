@@ -936,42 +936,43 @@ blocks:
       \ GRC will instantiate the first class it finds\nto get ports and parameters\
       \ of your block. The arguments to __init__  will\nbe the parameters. All of\
       \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
-      from gnuradio import gr\n\n\nclass blk(gr.sync_block):  # other base classes\
-      \ are basic_block, decim_block, interp_block\n    \"\"\"Hecho por Homero Ortega\
-      \ Boada, UIS 2020. Entrega como salida 1 si la entrada supera el umbral cero,\
-      \ pero -1 si no lo supera. Tanto la entrada como la salida es un valor de tipo\
-      \ float. Se ha logrado vectorizar la operacion asi: al vector de entrada in0\
-      \ se le aplica un limitador entre 0 y 1. Osea que los valores mayores a 1 se\
-      \ convierten a 1, los menores de cero a cero, con lo cual tendremos valores\
-      \ entre cero y 1. Luego se aplica un redondeo hacia arriba, con lo cual solo\
-      \ tendremos 0s o 1s. Luego se multiplica todo por2 y se resta 1, con lo cual\
-      \ solo tendremos -1s y 1s\"\"\"\n\n    def __init__(self):  # only default arguments\
-      \ here\n        \"\"\"arguments to this function show up as parameters in GRC\"\
-      \"\"\n        gr.sync_block.__init__(\n            self,\n            name='e_bipolar_decisor_ff',\
-      \   # will show up in GRC\n            in_sig=[np.float32],\n            out_sig=[np.float32])\n\
-      \        #self.Umbral=Umbral\n\n    def work(self, input_items, output_items):\n\
-      \        in0 = input_items[0]\n        out = output_items[0]\n        # Signal\
-      \ processing\n        out[:] = np.ceil(np.clip(in0,0,1))*2-1\n        #out[:]\
-      \ = [float(v>self.Umbral) for v in in0]\n        return len(output_items[0])\n"
+      from gnuradio import gr\n\n\nclass e_bipolar_decisor_ff(gr.sync_block):  # other\
+      \ base classes are basic_block, decim_block, interp_block\n    \"\"\"Hecho por\
+      \ Homero Ortega Boada, UIS 2020. Entrega como salida 1 si la entrada supera\
+      \ el umbral cero, pero -1 si no lo supera. Tanto la entrada como la salida es\
+      \ un valor de tipo float. Se ha logrado vectorizar la operacion asi: al vector\
+      \ de entrada in0 se le aplica un limitador entre 0 y 1. Osea que los valores\
+      \ mayores a 1 se convierten a 1, los menores de cero a cero, con lo cual tendremos\
+      \ valores entre cero y 1. Luego se aplica un redondeo hacia arriba, con lo cual\
+      \ solo tendremos 0s o 1s. Luego se multiplica todo por2 y se resta 1, con lo\
+      \ cual solo tendremos -1s y 1s\"\"\"\n\n    def __init__(self):  # only default\
+      \ arguments here\n        \"\"\"arguments to this function show up as parameters\
+      \ in GRC\"\"\"\n        gr.sync_block.__init__(\n            self,\n       \
+      \     name='e_bipolar_decisor_ff',   # will show up in GRC\n            in_sig=[np.float32],\n\
+      \            out_sig=[np.float32])\n        #self.Umbral=Umbral\n\n    def work(self,\
+      \ input_items, output_items):\n        in0 = input_items[0]\n        out = output_items[0]\n\
+      \        # Signal processing\n        out[:] = np.ceil(np.clip(in0,0,1))*2-1\n\
+      \        #out[:] = [float(v>self.Umbral) for v in in0]\n        return len(output_items[0])\n"
     affinity: ''
     alias: ''
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
   states:
-    _io_cache: '(''e_bipolar_decisor_ff'', ''blk'', [], [(''0'', ''float'', 1)], [(''0'',
-      ''float'', 1)], ''Hecho por Homero Ortega Boada, UIS 2020. Entrega como salida
-      1 si la entrada supera el umbral cero, pero -1 si no lo supera. Tanto la entrada
-      como la salida es un valor de tipo float. Se ha logrado vectorizar la operacion
-      asi: al vector de entrada in0 se le aplica un limitador entre 0 y 1. Osea que
-      los valores mayores a 1 se convierten a 1, los menores de cero a cero, con lo
-      cual tendremos valores entre cero y 1. Luego se aplica un redondeo hacia arriba,
-      con lo cual solo tendremos 0s o 1s. Luego se multiplica todo por2 y se resta
-      1, con lo cual solo tendremos -1s y 1s'', [])'
+    _io_cache: '(''e_bipolar_decisor_ff'', ''e_bipolar_decisor_ff'', [], [(''0'',
+      ''float'', 1)], [(''0'', ''float'', 1)], ''Hecho por Homero Ortega Boada, UIS
+      2020. Entrega como salida 1 si la entrada supera el umbral cero, pero -1 si
+      no lo supera. Tanto la entrada como la salida es un valor de tipo float. Se
+      ha logrado vectorizar la operacion asi: al vector de entrada in0 se le aplica
+      un limitador entre 0 y 1. Osea que los valores mayores a 1 se convierten a 1,
+      los menores de cero a cero, con lo cual tendremos valores entre cero y 1. Luego
+      se aplica un redondeo hacia arriba, con lo cual solo tendremos 0s o 1s. Luego
+      se multiplica todo por2 y se resta 1, con lo cual solo tendremos -1s y 1s'',
+      [])'
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [33, 373]
+    coordinate: [42, 402]
     rotation: 180
     state: disabled
 - name: formas
