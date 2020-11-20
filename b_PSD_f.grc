@@ -10,7 +10,7 @@ options:
     gen_linking: dynamic
     generate_options: hb_qt_gui
     hier_block_src_path: '.:'
-    id: b_PSD
+    id: b_PSD_f
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -21,7 +21,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: b_PSD
+    title: b_PSD_f
     window_size: (3000,1024)
   states:
     bus_sink: false
@@ -63,7 +63,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [64, 420]
+    coordinate: [764, 203]
     rotation: 0
     state: enabled
 - name: Ensayos
@@ -198,7 +198,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [208, 420]
+    coordinate: [917, 206]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_0
@@ -332,8 +332,8 @@ blocks:
     width8: '1'
     width9: '1'
     x_axis_label: '"Frecuencia"'
-    x_start: -samp_rate_audio/2
-    x_step: (samp_rate_audio-1)/N
+    x_start: -samp_rate/2
+    x_step: (samp_rate-1)/N
     x_units: '"Hz"'
     y_axis_label: '"Amplitud (Watt/Hz)"'
     y_units: '"Watt/Hz"'
@@ -343,10 +343,10 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [432, 364]
+    coordinate: [1141, 150]
     rotation: 0
     state: enabled
-- name: samp_rate_audio
+- name: samp_rate
   id: parameter
   parameters:
     alias: ''
