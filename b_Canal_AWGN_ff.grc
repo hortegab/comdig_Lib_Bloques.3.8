@@ -62,7 +62,7 @@ blocks:
     hide: none
     label: Ch. W.Noise (No in dB)
     short_id: ''
-    type: intx
+    type: eng_float
     value: '1000'
   states:
     bus_sink: false
