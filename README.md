@@ -22,7 +22,12 @@ Si esos requisitos no se cumplen, sigue las instrucciones que señala el Readme 
   
 # LA INSTALACION DE "Bloques Fatales"
 - Aquí se tienen unos bloques que definitivamente no pueden ser instalados en GNURadio 3.8.1 ya que usan elementos que han quedado obsoletos con esa versión de GNURadio
-- El consejo es simple: no insista en instalarlos, olvídese de que existen. Si se llegaren a necesitar es necesario pensar en una manera de implementarlos con elementos de GNURadio 3.8.1
+- El consejo es simple: no insista en instalarlos, olvídese de que existen. Si se llegaren a necesitar es necesario pensar en una manera de implementarlos con elementos de GNURadio 3.8.1. 
+
+Tenemos los siguientes bloques con ese problema:
+b_De_Scrambling_bb
+b_QT_pdf_cdf_ff
+b_diezma_cc
 
 # LA COMPROBACION
 - Actualiza librerias del GRC: oprime el ícono de la fecha circular de actualización "Reload Blocks"
