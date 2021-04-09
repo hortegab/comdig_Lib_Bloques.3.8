@@ -1,6 +1,7 @@
 options:
   parameters:
     author: Homero Ortega Boada. Universidad Industrial de Santander
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
@@ -27,7 +28,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_Canal_AWGN_ff
-    window_size: 2048,1100
   states:
     bus_sink: false
     bus_source: false
@@ -223,7 +223,7 @@ blocks:
     samp_rate: samp_rate
     type: fir_filter_fff
     width: BW/16
-    win: firdes.WIN_HAMMING
+    win: window.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
