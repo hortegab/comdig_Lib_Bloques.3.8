@@ -1,10 +1,11 @@
 options:
   parameters:
     author: Homero Ortega Boada. Universidad Industrial de Santader
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGis Universidad Industrial de Santander
     description: 'Genera una senal binaria bipolar aleatoria tipo float. Parametros
       usados: : Spb (Samples per bit), es para cuando desees que la senal binaria
       aparezca en forma discreta con un determinado numero de muestras en cada bit'
@@ -24,7 +25,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_binary_bipolar_source_f
-    window_size: ''
   states:
     bus_sink: false
     bus_source: false

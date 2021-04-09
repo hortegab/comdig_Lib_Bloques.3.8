@@ -1,10 +1,11 @@
 options:
   parameters:
     author: Homero Ortega
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGIS Universidad Industrial de Santander
     description: 'Some parameters of a random variable can visualized, like: the mean,
       the RMS value, the mean power, the PSD,, PDF, CDF the time signal. Parameters
       used: samp_rate - the sample rate of the signal; N_time - the number of time
@@ -25,7 +26,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_v_aleatoria_scope_pdf_cdf_f
-    window_size: ''
   states:
     bus_sink: false
     bus_source: false
@@ -146,7 +146,7 @@ blocks:
     alias: ''
     comment: ''
     gui_hint: 2,0,1,2
-    samp_rate: '22000'
+    samp_rate_audio: '22000'
   states:
     bus_sink: false
     bus_source: false

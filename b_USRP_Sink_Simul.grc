@@ -1,10 +1,11 @@
 options:
   parameters:
     author: Homero Ortega Boada. Universidad Industrial de Santander
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGis Universidad Industrial de Santander
     description: 'Es un simulador del bloque USRP_Sink con el hardware tipo USRP 2920.
       Entrega una senal pasobandas, con una frecuencia de muestreo que se calcula
       asi: samp_rate_o=(Center_Freq+samp_rate/2)*8'
@@ -24,7 +25,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_USRP_Sink_simul_f
-    window_size: ''
   states:
     bus_sink: false
     bus_source: false

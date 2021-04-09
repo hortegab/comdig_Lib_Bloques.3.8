@@ -1,10 +1,11 @@
 options:
   parameters:
     author: Homero Ortega Boada. Universidad Industrial de Santander
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGis Universidad Industrial de Santander
     description: para cada muestra entrante produce uno  si supera el Umbral=0, o
       cero en otro caso
     gen_cmake: 'On'
@@ -23,7 +24,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: 'b_decisor_fb '
-    window_size: ''
   states:
     bus_sink: false
     bus_source: false
@@ -51,6 +51,7 @@ blocks:
     comment: ''
     const_points: Constelacion
     dims: '1'
+    normalization: digital.constellation.AMPLITUDE_NORMALIZATION
     precision: '8'
     rot_sym: '4'
     soft_dec_lut: None

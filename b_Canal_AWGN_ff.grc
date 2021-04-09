@@ -5,7 +5,7 @@ options:
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGis Universidad Industrial de Santander
     description: "Este bloque es un simulador de un canal AWGN (Additive White Gaussian\
       \ Noise). De modo que solo tiene tres caracter\xEDsticas: suma ruido blanco\
       \ a la se\xF1al,  restringe el ancho de banda e Introduce un retardo a la se\xF1\

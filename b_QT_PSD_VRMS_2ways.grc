@@ -1,10 +1,11 @@
 options:
   parameters:
     author: Homero Ortega
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGis Universidad Industrial de Santander
     description: ''
     gen_cmake: 'On'
     gen_linking: dynamic
@@ -22,7 +23,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_PSD_VRMS_2ways
-    window_size: (3000,2024)
   states:
     bus_sink: false
     bus_source: false
@@ -625,6 +625,7 @@ blocks:
     minoutbuf: '0'
     name: '""'
     nconnections: '2'
+    norm_window: 'False'
     showports: 'True'
     tr_chan: '0'
     tr_level: '0.0'
@@ -643,7 +644,7 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    wintype: firdes.WIN_BLACKMAN_hARRIS
+    wintype: window.WIN_BLACKMAN_hARRIS
     ymax: '10'
     ymin: '-140'
   states:
@@ -705,6 +706,7 @@ blocks:
     minoutbuf: '0'
     name: '""'
     nconnections: '2'
+    norm_window: 'False'
     showports: 'True'
     tr_chan: '0'
     tr_level: '0.0'
@@ -723,7 +725,7 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    wintype: firdes.WIN_BLACKMAN_hARRIS
+    wintype: window.WIN_BLACKMAN_hARRIS
     ymax: '10'
     ymin: '-140'
   states:

@@ -1,10 +1,11 @@
 options:
   parameters:
     author: Homero Ortega Boada. Universidad Industrial de Santander
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGis Universidad Industrial de Santander
     description: Hecho por Homero Ortega. Recibe an input with values between Xmin
       and Xmax and calculate the Probaility Density Function (PDF), as well as Cumulative
       Distribution Function (CDF) dinamically.
@@ -24,7 +25,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_pdf_cdf_ff
-    window_size: 2048,1100
   states:
     bus_sink: false
     bus_source: false

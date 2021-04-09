@@ -1,10 +1,11 @@
 options:
   parameters:
     author: Homero Ortega
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGis Universidad Industrial de Santander
     description: ''
     gen_cmake: 'On'
     gen_linking: dynamic
@@ -22,7 +23,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_PSD_ff
-    window_size: (3000,1024)
   states:
     bus_sink: false
     bus_source: false

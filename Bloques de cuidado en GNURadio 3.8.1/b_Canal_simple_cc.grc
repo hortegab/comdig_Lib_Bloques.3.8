@@ -1,10 +1,11 @@
 options:
   parameters:
     author: Homero Ortega Boada. Universidad Industrial de Santander
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGIS Universidad Industrial de Santander
     description: 'Este bloque es un simulador de un canal discreto, sencillo. La simplicidad
       de este canal esta en aplicar solo lo siguiente: ruido, desviacion de frecuencia,
       desviacion de angulo, fluctuaciones de magnitud, perdidas de propagacion. Para
@@ -34,7 +35,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_Canal_simple_cc
-    window_size: 2048,1100
   states:
     bus_sink: false
     bus_source: false

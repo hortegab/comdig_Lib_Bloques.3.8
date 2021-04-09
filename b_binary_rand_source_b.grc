@@ -1,10 +1,11 @@
 options:
   parameters:
     author: Homero Ortega Boada. Universidad Industrial de Santader
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGis Universidad Industrial de Santander
     description: This is a binary random generator with output of type float
     gen_cmake: 'On'
     gen_linking: dynamic
@@ -22,7 +23,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_binary_rand_source_b
-    window_size: ''
   states:
     bus_sink: false
     bus_source: false

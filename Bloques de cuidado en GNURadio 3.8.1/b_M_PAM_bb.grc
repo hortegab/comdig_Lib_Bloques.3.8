@@ -1,10 +1,11 @@
 options:
   parameters:
     author: Homero Ortega Boada. Universidad Industrial de Santander
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGIS Universidad Industrial de Santander
     description: Es un modulador M-PAM. La entrada y la salida es de tipo Byte, pero
       en la entrada lo que se esperan son unos y ceros, osea que la entrada es una
       senal PCM.
@@ -24,12 +25,11 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_M_PAM_bb
-    window_size: ''
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 8]
+    coordinate: [6, 8]
     rotation: 0
     state: enabled
 

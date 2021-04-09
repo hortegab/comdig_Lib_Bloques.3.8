@@ -1,6 +1,7 @@
 options:
   parameters:
-    author: ''
+    author: Grupo RadioGis Universidad Industrial de Santander
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
@@ -22,12 +23,11 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_demod_constelacion_cb
-    window_size: ''
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 8]
+    coordinate: [7, 8]
     rotation: 0
     state: enabled
 
@@ -63,6 +63,7 @@ blocks:
     comment: ''
     const_points: Constelacion
     dims: '1'
+    normalization: digital.constellation.AMPLITUDE_NORMALIZATION
     precision: '8'
     rot_sym: '4'
     soft_dec_lut: None

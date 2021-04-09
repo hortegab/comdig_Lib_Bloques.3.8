@@ -1,10 +1,11 @@
 options:
   parameters:
-    author: ''
+    author: Homero Ortega Boada
+    catch_exceptions: 'True'
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGIS Universidad Industrial de Santander
     description: ''
     gen_cmake: 'On'
     gen_linking: dynamic
@@ -22,7 +23,6 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_mod_constelacion_cb
-    window_size: ''
   states:
     bus_sink: false
     bus_source: false
@@ -50,6 +50,7 @@ blocks:
     comment: ''
     const_points: Constelacion
     dims: '1'
+    normalization: digital.constellation.AMPLITUDE_NORMALIZATION
     precision: '8'
     rot_sym: '4'
     soft_dec_lut: None

@@ -5,7 +5,7 @@ options:
     category: comdiguis
     cmake_opt: ''
     comment: ''
-    copyright: ''
+    copyright: Grupo RadioGis Universidad Industrial de Santander
     description: 'Genera una senal binaria bipolar aleatoria tipo float. Parametros
       usados: Spb (Samples per bit), es para cuando desees que la senal binaria aparezca
       en forma discreta con un determinado numero de muestras en cada bit'
