@@ -694,6 +694,41 @@ blocks:
     coordinate: [488, 348]
     rotation: 0
     state: disabled
+- name: epy_block_0_1_0
+  id: epy_block
+  parameters:
+    _source_code: "import numpy as np\nfrom gnuradio import gr\nimport matplotlib.pyplot\
+      \ as plt\n\nclass polar_grafxy_r(gr.sync_block):\n    \"\"\"\n    Grafica polar,\
+      \ pero los valores a graficar estan dados por las componentes en fase y en cuadratura\
+      \ x,y. Hecho por Homero Ortega Boada. Universida Industrial de Santander.\n\
+      Hace algo parecido al visor de constelaciones pero uniendo todos los puntos\
+      \ recibidos con linea.\n    \"\"\"\n    def __init__(self,samp_rate=32000):\n\
+      \        gr.sync_block.__init__(self,\n            name=\"e_polar_grafxy_f\"\
+      ,\n            in_sig=[np.float32,np.float32],\n            out_sig=None)\n\
+      \        self.Tsamp=1./samp_rate\n        \n        #########################################\n\
+      \        ##        Parametros                   ##\n        #########################################\n\
+      \                \n    def work(self, input_items, output_items):\n        x=input_items[0]\n\
+      \        y=input_items[1]\n        plt.plot(y,x, color=\"blue\")\n        plt.pause(self.Tsamp)\n\
+      \        # plt.clf() # esto limpia la grafica\n        \n        return len(input_items[0])\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+  states:
+    _io_cache: ('e_polar_grafxy_f', 'polar_grafxy_r', [('samp_rate', '32000')], [('0',
+      'float', 1), ('1', 'float', 1)], [], '\n    Grafica polar, pero los valores
+      a graficar estan dados por las componentes en fase y en cuadratura x,y. Hecho
+      por Homero Ortega Boada. Universida Industrial de Santander.\nHace algo parecido
+      al visor de constelaciones pero uniendo todos los puntos recibidos con linea.\n    ',
+      [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1250, 406]
+    rotation: 0
+    state: disabled
 - name: epy_block_0_2
   id: epy_block
   parameters:
@@ -974,6 +1009,40 @@ blocks:
     bus_structure: null
     coordinate: [42, 402]
     rotation: 180
+    state: disabled
+- name: epy_block_0_7
+  id: epy_block
+  parameters:
+    _source_code: "import numpy as np\nfrom gnuradio import gr\nimport matplotlib.pyplot\
+      \ as plt\n\nclass polar_graf_c(gr.sync_block):\n    \"\"\"\n    Grafica polar,\
+      \ pero los valores a graficar estan dados por una senal compleja. Hecho por\
+      \ Homero Ortega Boada. Universida Industrial de Santander.\nHace algo parecido\
+      \ al visor de constelaciones pero uniendo todos los puntos recibidos con linea.\n\
+      \    \"\"\"\n    def __init__(self,samp_rate=32000):\n        gr.sync_block.__init__(self,\n\
+      \            name=\"e_polar_graf_c\",\n            in_sig=[np.complex64],\n\
+      \            out_sig=None)\n        self.Tsamp=1./samp_rate\n\n        #########################################\n\
+      \        ##        Parametros                   ##\n        #########################################\n\
+      \                \n    def work(self, input_items, output_items):\n        campoE\
+      \ = input_items[0] \n        x=np.real(campoE)\n        y=np.imag(campoE)\n\
+      \        plt.plot(x,y, color=\"blue\")\n        plt.pause(self.Tsamp)\n    \
+      \    # plt.clf() # esto limpia la grafica\n        \n        return len(input_items[0])\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+  states:
+    _io_cache: ('e_polar_graf_c', 'polar_graf_c', [('samp_rate', '32000')], [('0',
+      'complex', 1)], [], '\n    Grafica polar, pero los valores a graficar estan
+      dados por una senal compleja. Hecho por Homero Ortega Boada. Universida Industrial
+      de Santander.\nHace algo parecido al visor de constelaciones pero uniendo todos
+      los puntos recibidos con linea.\n    ', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1246, 474]
+    rotation: 0
     state: disabled
 - name: formas
   id: epy_module

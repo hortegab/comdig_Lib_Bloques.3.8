@@ -63,7 +63,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [764, 203]
+    coordinate: [753, 270]
     rotation: 0
     state: enabled
 - name: Ensayos
@@ -148,7 +148,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [176, 292]
+    coordinate: [165, 359]
     rotation: 180
     state: enabled
 - name: blocks_complex_to_mag_squared_0
@@ -164,7 +164,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [592, 212]
+    coordinate: [581, 279]
     rotation: 0
     state: enabled
 - name: blocks_float_to_complex_0
@@ -180,7 +180,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [176, 200]
+    coordinate: [165, 267]
     rotation: 0
     state: enabled
 - name: blocks_multiply_const_vxx_0_0
@@ -198,7 +198,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [917, 206]
+    coordinate: [906, 273]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_0
@@ -216,7 +216,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [304, 212]
+    coordinate: [293, 279]
     rotation: 0
     state: enabled
 - name: fft_vxx_1
@@ -237,7 +237,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [402, 178]
+    coordinate: [391, 245]
     rotation: 0
     state: true
 - name: import_0
@@ -270,7 +270,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [16, 196]
+    coordinate: [5, 263]
     rotation: 0
     state: enabled
 - name: qtgui_vector_sink_f_0
@@ -343,7 +343,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1141, 150]
+    coordinate: [1130, 217]
     rotation: 0
     state: enabled
 - name: samp_rate
