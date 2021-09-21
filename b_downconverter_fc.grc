@@ -183,7 +183,7 @@ blocks:
     samp_rate: samp_rate
     type: fir_filter_fff
     width: BW/16.
-    win: firdes.WIN_HAMMING
+    win: window.WIN_RECTANGULAR
   states:
     bus_sink: false
     bus_source: false
@@ -207,7 +207,7 @@ blocks:
     samp_rate: samp_rate
     type: fir_filter_fff
     width: BW/16.
-    win: firdes.WIN_HAMMING
+    win: window.WIN_RECTANGULAR
   states:
     bus_sink: false
     bus_source: false

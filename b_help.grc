@@ -134,42 +134,6 @@ blocks:
     coordinate: [264, 556]
     rotation: 0
     state: disabled
-- name: coding
-  id: epy_module
-  parameters:
-    alias: ''
-    comment: ''
-    source_code: "# this module will be imported in the into your flowgraph\nimport\
-      \ numpy\nimport math\n#######################################################\n\
-      ##        Done by Homero Ortega Boada              ##\n##        comdiguis@saber.uis.edu.co\
-      \                 ##\n##     Universidad Industrial de Santander           ##\n\
-      #######################################################\n#######################################################\n\
-      ##       Constellation map  identification           ##\n#######################################################\
-      \                  \n# Constellation points are analyzed to determine the \n\
-      # the map used for ordering of the constellation points\ndef sum_modulus(a,b,modulus):\n\
-      \    # realiza una suma de a y b en modulo modulus\n    return (a+b)%modulus\n\
-      \ndef angle_map(constellation_points):\n    # esta funcion entrega todos los\
-      \ angulos positivos entre 0 y 2pi\n    angles=numpy.angle(constellation_points)\n\
-      \    return sum_modulus(angles, 2*math.pi, 2*math.pi)\n\ndef inverse_map(constellation_points):\n\
-      \    M=len(constellation_points)\n    angles=angle_map(constellation_points)\n\
-      \    angles=sum_modulus(angles,-angles[0], 2*math.pi) # giro a agulo cero\n\
-      \    delta_angle= 2*math.pi/M     # angulo entre puntos\n    cod_inv=numpy.round(angles/delta_angle)\n\
-      \    cod_inv=cod_inv.astype(numpy.int) #conversion a entero \n    return cod_inv\n\
-      \ndef direct_map(constellation_points):\n    M=len(constellation_points)\n \
-      \   codinv=inverse_map(constellation_points)\n    coddirect=numpy.array([0]*M)\n\
-      \    for j in range(M):\n        temp=numpy.where(codinv==j)\n        coddirect[j]=temp[0][0]\n\
-      \    return coddirect\n\n\"\"\" # SECCION DE PRUEBAS DEL CODIGO\nimport gnuradio.digital\
-      \ as digital\nconstelacion=digital.constellation_8psk().points()\nprint(\"constelacion\
-      \ = \", constelacion)\nmapdirect=direct_map(constelacion)\nprint(\"codigo directo\
-      \ = \", mapdirect)\nmapinverse=inverse_map(constelacion)\nprint(\"codigo inverso\
-      \ = \", mapinverse)\n\"\"\"\n\n\n\n\n\n\n"
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [176, 148]
-    rotation: 0
-    state: disabled
 - name: e_Add
   id: epy_block
   parameters:
@@ -1308,6 +1272,62 @@ blocks:
     coordinate: [16, 148]
     rotation: 0
     state: disabled
+- name: wform
+  id: epy_module
+  parameters:
+    alias: ''
+    comment: ''
+    source_code: "import math\nimport numpy\n#######################################################\n\
+      ##        Hecho por Homero Ortega Boada              ##\n##        comdiguis@saber.uis.edu.co\
+      \                 ##\n##     Universidad Industrial de Santander           ##\n\
+      #######################################################\n\n#######################################################\n\
+      ##                  Delta                            ##\n#######################################################\
+      \                       \ndef delta(ntaps):\n    cerosd=(   [0]*(int(ntaps/2)-1)\
+      \    )\n    cerosdi=(   [0]*(int(ntaps/2))     )\n    delta_i= numpy.concatenate((\
+      \ cerosdi, ([1]) ))\n    delta=numpy.concatenate(( delta_i, cerosd ))\n    return\
+      \ delta\n#######################################################\n##       \
+      \        Forma rectangular                   ##\n#######################################################\
+      \                       \ndef rect(Sps):\n    return Sps*[1.,]\n\n#######################################################\n\
+      ##               Forma de Nyquist                    ##\n#######################################################\
+      \                       \ndef nyq(Sps,ntaps):\n    n=numpy.linspace(-int(ntaps/2),\
+      \ int(ntaps/2-1),ntaps)\n    h=numpy.sinc(n/Sps)\n#    return h/numpy.amax(h)\n\
+      \    return h\n#######################################################\n## \
+      \              Forma Coseno Alzado                 ##\n#######################################################\
+      \                       \ndef rcos(Sps,ntaps,beta):\n    if beta==0:\n     \
+      \   h=nyq(Sps,ntaps)\n    else:\n        h=ntaps*[0,]\n        for n in range(ntaps):\n\
+      \            k=n-ntaps/2. # esto es para que h[n] quede centrada en la mitad\
+      \ del vector\n            if abs(k)==Sps/(2.*beta):\n                h[n]=numpy.sinc(1./(2.*beta))*math.pi/4.\n\
+      \            else:\n                h[n]=numpy.sinc(k/Sps)*math.cos(beta*k*math.pi/Sps)/(1.-(2.*beta*k/Sps)**2)\
+      \                \n    Amp=numpy.amax(h)\n    return h/Amp\n#######################################################\n\
+      ##            Forma Raiz de Coseno Alzado            ##\n#######################################################\
+      \                       \n\ndef rrcos(Sps,ntaps,beta):\n    if beta==0:\n  \
+      \      h=nyq(Sps,ntaps)\n    else:\n        h=ntaps*[0,]\n        beta4=4.*beta\n\
+      \        for n in range(ntaps):\n            k=n-ntaps/2. # esto es para que\
+      \ h[n] quede centrada en la mitad del vector\n            if k==0:\n       \
+      \         h[n]=1+beta*(4./math.pi-1.)\n            elif abs(k)==Sps/beta4:\n\
+      \                ha=(1.+2./math.pi)*math.sin(math.pi/beta4)\n              \
+      \  hb=(1.-2./math.pi)*math.cos(math.pi/beta4)\n                h[n]=(ha+hb)*beta/math.sqrt(2.)\n\
+      \            else:\n                ks=k/Sps\n                kspi=math.pi*ks\n\
+      \                Num=math.sin(kspi*(1-beta))+beta4*ks*math.cos(kspi*(1+beta))\n\
+      \                Den=kspi*(1.-(beta4*ks)**2)\n                h[n]=Num/Den \
+      \               \n    Amp=numpy.amax(h)\n    return h/Amp\n########################################################\n\
+      ##     Bipolar non return to zero level signal        ##\n########################################################\n\
+      def B_NRZ_L(Sps):\n    return Sps*[1.,]\n\n########################################################\n\
+      ##  Forma sinc . Es la misma nyq() que aparece arriba ##\n########################################################\n\
+      def sinc(Sps,ntaps):\n    n=np.linspace(-int(ntaps/2), int(ntaps/2-1),ntaps)\n\
+      \    h=np.sinc(n/Sps)\n    return h\n########################################################\n\
+      ##              forma diente se sierra                ##\n########################################################\n\
+      def saw(Sps):\n    return np.linspace(0,Sps-1,Sps)\t\n########################################################\n\
+      #         Bipolar non return to zero signal           ##\n########################################################\n\
+      def RZ(Sps):\n    h=Sps*[1.,]\n    Sps_m=int(Sps/2)\n    h[Sps_m+1:Sps:1]=np.zeros(Sps-Sps_m)\n\
+      \    return h\n"
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [200, 203]
+    rotation: 0
+    state: enabled
 
 connections:
 - [analog_noise_source_x_0, '0', epy_block_0_2, '0']
