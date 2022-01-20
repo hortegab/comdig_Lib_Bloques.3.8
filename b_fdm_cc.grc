@@ -23,6 +23,7 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_fdm_cc
+    window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false
@@ -343,7 +344,7 @@ blocks:
     samp_rate: samp_rate
     type: fir_filter_ccf
     width: AnchoCanales/8.
-    win: firdes.WIN_HAMMING
+    win: window.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
@@ -367,7 +368,7 @@ blocks:
     samp_rate: samp_rate
     type: fir_filter_ccf
     width: AnchoCanales/8.
-    win: firdes.WIN_HAMMING
+    win: window.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
@@ -391,7 +392,7 @@ blocks:
     samp_rate: samp_rate
     type: fir_filter_ccf
     width: AnchoCanales/8.
-    win: firdes.WIN_HAMMING
+    win: window.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
@@ -415,7 +416,7 @@ blocks:
     samp_rate: samp_rate
     type: fir_filter_ccf
     width: AnchoCanales/8.
-    win: firdes.WIN_HAMMING
+    win: window.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
