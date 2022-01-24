@@ -11,7 +11,9 @@ Si esos requisitos no se cumplen, sigue las instrucciones que señala el Readme 
 # LA INSTALACION PRINCIPAL
 - No hay que hacer una instalación por terminal de comandos
 - Simplemente, abra GRC de GNURadio e instale bloque por bloque siguiendo este proceso:
-  -- busca y abre el flujograma del bloque, lo corres. Eso es todo
+  -- comienza por los bloques que están en la carpeta principal. Los abres desde gnuradio y los corres uno por uno. Entonces gnuradio los memorizará para su uso futuro
+  -- Reinicia gnuradio y luego corre los bloques que están en la subcarpeta BloquesDependientes. Eso es debido a que estos dependen de la instalación previa de los primeros
+  -- Finalmente corre los que aparecen en la subcarpeta "Bloques de cuidado en GNURadio 3.8.1"
 
 # LA INSTALACION DE "Bloques de cuidado en GNURadio 3.8.1"
 - Se refiere a los bloques que se encuentran en la carpeta "Bloques de cuidado en GNURadio 3.8.1"
