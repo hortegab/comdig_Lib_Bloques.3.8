@@ -2,7 +2,7 @@ options:
   parameters:
     author: Homero Ortega
     catch_exceptions: 'True'
-    category: comdiguis
+    category: '''[comdiguis]'''
     cmake_opt: ''
     comment: ''
     copyright: Grupo de Investigacion RadioGIS Universidad Industrial de Santander
@@ -29,6 +29,7 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_antennaarraylinearz
+    window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false

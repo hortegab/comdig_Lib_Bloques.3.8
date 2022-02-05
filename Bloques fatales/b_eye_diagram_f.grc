@@ -1,18 +1,18 @@
 options:
   parameters:
-    author: Homero Ortega. Universidad Industrial de Santander. Colombia
+    author: Homero Ortega
     catch_exceptions: 'True'
-    category: comdiguis
+    category: '''[version_vieja]'''
     cmake_opt: ''
     comment: ''
     copyright: Grupo RadioGis Universidad Industrial de Santander
-    description: "Realiza un diezmado del mundo real. Sps es la distancia entre las\
-      \ muestras a diezmar, D es el punto de inicio.\n    El codigo esta en diezma_ff.py. "
+    description: "permite visualizar el diagrama de ojo. Parametros usados: Sps -\
+      \ muestras por simbolo; Vpico - amplitud pico de la se\xF1al"
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: hb
     hier_block_src_path: '.:'
-    id: b_diezma_cc
+    id: b_eye_diagram_f
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -23,7 +23,8 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: b_diezma_cc
+    title: b_eye_diagram_f
+    window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false
@@ -33,13 +34,25 @@ options:
     state: enabled
 
 blocks:
-- name: D
+- name: N
+  id: variable
+  parameters:
+    comment: ''
+    value: Sps*256
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [504, 12]
+    rotation: 0
+    state: enabled
+- name: Delay
   id: parameter
   parameters:
     alias: ''
     comment: ''
     hide: none
-    label: D
+    label: Delay
     short_id: ''
     type: intx
     value: '0'
@@ -47,43 +60,25 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [282, 12]
+    coordinate: [416, 12]
     rotation: 0
     state: enabled
-- name: E3TRadio_diezma_ff_0
-  id: E3TRadio_diezma_ff
+- name: E3TRadio_vec_diagrama_ojo_f_0
+  id: E3TRadio_vec_diagrama_ojo_f
   parameters:
-    M: D
-    N: Sps
+    N: N
+    Sps: Sps
     affinity: ''
     alias: ''
     comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
+    samp_rate: samp_rate
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [358, 211]
+    coordinate: [608, 244]
     rotation: 0
-    state: true
-- name: E3TRadio_diezma_ff_0_0
-  id: E3TRadio_diezma_ff
-  parameters:
-    M: D
-    N: Sps
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [355, 141]
-    rotation: 0
-    state: true
+    state: enabled
 - name: Sps
   id: parameter
   parameters:
@@ -98,59 +93,46 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [193, 12]
+    coordinate: [200, 12]
     rotation: 0
     state: enabled
-- name: blocks_complex_to_float_0
-  id: blocks_complex_to_float
+- name: blocks_delay_0
+  id: blocks_delay
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    delay: Delay
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [264, 260]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_0_0
+  id: blocks_stream_to_vector
   parameters:
     affinity: ''
     alias: ''
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
+    num_items: N
+    type: float
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [171, 169]
+    coordinate: [408, 260]
     rotation: 0
-    state: true
-- name: blocks_float_to_complex_0
-  id: blocks_float_to_complex
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [465, 168]
-    rotation: 0
-    state: true
-- name: pad_sink_0
-  id: pad_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    label: out
-    num_streams: '1'
-    optional: 'False'
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [604, 179]
-    rotation: 0
-    state: true
+    state: enabled
 - name: pad_source_0
   id: pad_source
   parameters:
@@ -162,23 +144,37 @@ blocks:
     minoutbuf: '0'
     num_streams: '1'
     optional: 'False'
-    type: complex
+    type: float
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [42, 185]
+    coordinate: [24, 260]
     rotation: 0
-    state: true
+    state: enabled
+- name: samp_rate
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: samp_rate
+    short_id: ''
+    type: eng_float
+    value: '32000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 12]
+    rotation: 0
+    state: enabled
 
 connections:
-- [E3TRadio_diezma_ff_0, '0', blocks_float_to_complex_0, '1']
-- [E3TRadio_diezma_ff_0_0, '0', blocks_float_to_complex_0, '0']
-- [blocks_complex_to_float_0, '0', E3TRadio_diezma_ff_0_0, '0']
-- [blocks_complex_to_float_0, '1', E3TRadio_diezma_ff_0, '0']
-- [blocks_float_to_complex_0, '0', pad_sink_0, '0']
-- [pad_source_0, '0', blocks_complex_to_float_0, '0']
+- [blocks_delay_0, '0', blocks_stream_to_vector_0_0, '0']
+- [blocks_stream_to_vector_0_0, '0', E3TRadio_vec_diagrama_ojo_f_0, '0']
+- [pad_source_0, '0', blocks_delay_0, '0']
 
 metadata:
   file_format: 1

@@ -2,20 +2,20 @@ options:
   parameters:
     author: Homero Ortega
     catch_exceptions: 'True'
-    category: comdiguis
+    category: '''[version_vieja]'''
     cmake_opt: ''
     comment: ''
-    copyright: Grupo RadioGIS Universidad Industrial de Santander
-    description: 'permite visualizar el diagrama de ojo. Parametros usados: N es el
-      numero de muestras en el intervalo de tiempo a graficar, se recomienda que N=2*Sps,
-      donde Sps es el numero de muestras por simbolo; samp_rate es la frecuencia de
-      muestreo; Delay es el retraso que se le puede aplicar a la senal para centrar
-      mejor el ojo'
+    copyright: ''
+    description: 'permite visualizar el diagrama de ojo y el instante del timing.
+      Parametros usados: N es el numero de muestras en el intervalo de tiempo a graficar,
+      se recomienda que N=2*Sps, donde Sps es el numero de muestras por simbolo; samp_rate
+      es la frecuencia de muestreo; Delay es el retraso que se le puede aplicar a
+      la senal para centrar mejor el ojo'
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: hb
     hier_block_src_path: '.:'
-    id: b_eye_diagram2_f
+    id: b_eye_timing2_f
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -26,7 +26,8 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: b_eye_diagram2_f
+    title: b_eye_timing2_f
+    window_size: ''
   states:
     bus_sink: false
     bus_source: false
@@ -45,7 +46,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 20]
+    coordinate: [800, 20]
     rotation: 0
     state: enabled
 - name: Spsi
@@ -57,7 +58,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [616, 20]
+    coordinate: [728, 20]
     rotation: 0
     state: enabled
 - name: Delay
@@ -77,6 +78,23 @@ blocks:
     coordinate: [512, 12]
     rotation: 0
     state: enabled
+- name: E3TRadio_diezmoppenh3_ff_0
+  id: E3TRadio_diezmoppenh3_ff
+  parameters:
+    M: int((Timing-Sps/2)*Spsi/Sps)
+    N: Spsi
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [592, 348]
+    rotation: 0
+    state: enabled
 - name: E3TRadio_vec_diagrama_ojo2_f_0
   id: E3TRadio_vec_diagrama_ojo2_f
   parameters:
@@ -89,7 +107,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [648, 156]
+    coordinate: [1144, 156]
     rotation: 0
     state: disabled
 - name: Nvol
@@ -126,6 +144,23 @@ blocks:
     coordinate: [200, 12]
     rotation: 0
     state: enabled
+- name: Timing
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Timing
+    short_id: ''
+    type: intx
+    value: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [608, 12]
+    rotation: 0
+    state: enabled
 - name: blocks_delay_0
   id: blocks_delay
   parameters:
@@ -145,6 +180,25 @@ blocks:
     coordinate: [160, 260]
     rotation: 0
     state: enabled
+- name: blocks_stream_mux_0
+  id: blocks_stream_mux
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    lengths: Spsi*2, Spsi*2
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [720, 264]
+    rotation: 0
+    state: enabled
 - name: blocks_stream_to_vector_0_0
   id: blocks_stream_to_vector
   parameters:
@@ -160,7 +214,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [432, 260]
+    coordinate: [896, 276]
     rotation: 0
     state: enabled
 - name: epy_block_0
@@ -178,7 +232,7 @@ blocks:
       ,\n            in_sig=[(np.float32, N)],\n            out_sig=None)\n      \
       \  #########################################\n        ##        Parametros \
       \                  ##\n        #########################################\n \
-      \       self.Sps = N/2\n        self.Tsamp=1./samp_rate\n        Tb=self.Sps*self.Tsamp\n\
+      \       self.Sps = int(N/2)\n        self.Tsamp=1./samp_rate\n        Tb=self.Sps*self.Tsamp\n\
       \        self.t = np.linspace(-Tb,Tb, 2*self.Sps)\n        self.Ncurvas=Ncurvas\n\
       \        self.contador=0\n\n    def work(self, input_items, output_items):\n\
       \        in0 = input_items[0] # in0 es un 2D array (como una matrix)\n     \
@@ -203,7 +257,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [632, 244]
+    coordinate: [1128, 260]
     rotation: 0
     state: enabled
 - name: pad_source_0
@@ -223,7 +277,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [24, 260]
+    coordinate: [16, 236.0]
     rotation: 0
     state: enabled
 - name: rational_resampler_xxx_0
@@ -243,7 +297,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [256, 236]
+    coordinate: [368, 236]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -265,11 +319,14 @@ blocks:
     state: enabled
 
 connections:
+- [E3TRadio_diezmoppenh3_ff_0, '0', blocks_stream_mux_0, '1']
 - [blocks_delay_0, '0', rational_resampler_xxx_0, '0']
+- [blocks_stream_mux_0, '0', blocks_stream_to_vector_0_0, '0']
 - [blocks_stream_to_vector_0_0, '0', E3TRadio_vec_diagrama_ojo2_f_0, '0']
 - [blocks_stream_to_vector_0_0, '0', epy_block_0, '0']
 - [pad_source_0, '0', blocks_delay_0, '0']
-- [rational_resampler_xxx_0, '0', blocks_stream_to_vector_0_0, '0']
+- [rational_resampler_xxx_0, '0', E3TRadio_diezmoppenh3_ff_0, '0']
+- [rational_resampler_xxx_0, '0', blocks_stream_mux_0, '0']
 
 metadata:
   file_format: 1

@@ -2,7 +2,7 @@ options:
   parameters:
     author: Homero Ortega Boada. Universidad Industrial de Santander
     catch_exceptions: 'True'
-    category: comdiguis
+    category: '''[comdiguis]'''
     cmake_opt: ''
     comment: ''
     copyright: Grupo RadioGis Universidad Industrial de Santander

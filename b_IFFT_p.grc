@@ -1,7 +1,8 @@
 options:
   parameters:
     author: ''
-    category: comdiguis
+    catch_exceptions: 'True'
+    category: '''[comdiguis]'''
     cmake_opt: ''
     comment: ''
     copyright: ''

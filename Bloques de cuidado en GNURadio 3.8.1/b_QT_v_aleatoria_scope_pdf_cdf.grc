@@ -2,7 +2,7 @@ options:
   parameters:
     author: Homero Ortega
     catch_exceptions: 'True'
-    category: comdiguis
+    category: '''[comdiguis]'''
     cmake_opt: ''
     comment: ''
     copyright: Grupo RadioGIS Universidad Industrial de Santander
@@ -26,6 +26,7 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_v_aleatoria_scope_pdf_cdf_f
+    window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false
@@ -146,7 +147,7 @@ blocks:
     alias: ''
     comment: ''
     gui_hint: 2,0,1,2
-    samp_rate_audio: '22000'
+    samp_rate: '22000'
   states:
     bus_sink: false
     bus_source: false

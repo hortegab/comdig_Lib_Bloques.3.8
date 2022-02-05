@@ -2,7 +2,7 @@ options:
   parameters:
     author: ''
     catch_exceptions: 'True'
-    category: comdiguis
+    category: '''[comdiguis]'''
     cmake_opt: ''
     comment: ''
     copyright: ''
@@ -23,6 +23,7 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_LMS_Equalizer_cc
+    window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false

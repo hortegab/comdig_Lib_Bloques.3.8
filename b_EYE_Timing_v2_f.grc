@@ -2,7 +2,7 @@ options:
   parameters:
     author: 'Done by: Homero Ortega Boada. Universidad Industrial de Santander'
     catch_exceptions: 'True'
-    category: borrar
+    category: '''[comdiguis]'''
     cmake_opt: ''
     comment: ''
     copyright: ''
@@ -24,6 +24,7 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_EYE_Timing_v2_f
+    window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false

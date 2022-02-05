@@ -2,7 +2,7 @@ options:
   parameters:
     author: Homero Ortega
     catch_exceptions: 'True'
-    category: borrar
+    category: '''[comdiguis]'''
     cmake_opt: ''
     comment: ''
     copyright: Grupo de Investigacion RadioGIS Universidad Industrial de Santander
@@ -214,7 +214,7 @@ blocks:
     bus_structure: null
     coordinate: [919, 133]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: import_0
   id: import
   parameters:
@@ -335,7 +335,7 @@ blocks:
     label: angulo phi
     short_id: ''
     type: ''
-    value: numpy.linspace(-numpy.pi,numpy.pi,L_angu)
+    value: numpy.linspace(-numpy.pi, numpy.pi, 10)
   states:
     bus_sink: false
     bus_source: false

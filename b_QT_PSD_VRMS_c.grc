@@ -2,7 +2,7 @@ options:
   parameters:
     author: Homero Ortega
     catch_exceptions: 'True'
-    category: comdiguis
+    category: '''[comdiguis]'''
     cmake_opt: ''
     comment: ''
     copyright: Grupo RadioGis Universidad Industrial de Santander
@@ -23,6 +23,7 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_PSD_VRMS_c
+    window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false

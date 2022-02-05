@@ -1,12 +1,14 @@
 options:
   parameters:
     author: 'Done by: Homero Ortega Boada. Universidad Industrial de Santander'
-    category: comdiguis
+    catch_exceptions: 'True'
+    category: '''[version_vieja]'''
     cmake_opt: ''
     comment: ''
     copyright: ''
     description: 'Let you to see the eye diagram of complex signals in comparison
-      with a patron. Parametros usados: '
+      with a patron. Este bloque fue un experimento que ya no se usa. Ahora a usar:
+      b_EYE_Timing_c'
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: hb_qt_gui
@@ -40,7 +42,7 @@ blocks:
     gui_hint: 0,1
     label: Centrar el Ojo
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
     rangeType: int
     start: '0'
     step: '1'
@@ -51,7 +53,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1096, 444]
+    coordinate: [1400, 4.0]
     rotation: 0
     state: enabled
 - name: variable_qtgui_label_0
@@ -60,14 +62,14 @@ blocks:
     comment: ''
     formatter: None
     gui_hint: 0,0
-    label: 'Diagrama de Ojo '
+    label: 'Graphic of: '
     type: string
     value: Title
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1096, 572]
+    coordinate: [1176, 268.0]
     rotation: 0
     state: enabled
 - name: AlphaLineas
@@ -84,7 +86,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1096, 196]
+    coordinate: [1272, 4.0]
     rotation: 0
     state: enabled
 - name: E3TRadio_diezmoppenh3_ff_0
@@ -101,7 +103,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [704, 574]
+    coordinate: [680, 100.0]
     rotation: 180
     state: enabled
 - name: E3TRadio_diezmoppenh3_ff_0_0
@@ -118,7 +120,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [679, 151]
+    coordinate: [720, 540.0]
     rotation: 180
     state: enabled
 - name: GrosorLineas
@@ -130,12 +132,12 @@ blocks:
     label: GrosorLineas
     short_id: ''
     type: ''
-    value: '20'
+    value: '10'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1096, 108]
+    coordinate: [1152, 4.0]
     rotation: 0
     state: enabled
 - name: N_eyes
@@ -270,7 +272,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [824, 360]
+    coordinate: [776, 320.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0
@@ -327,7 +329,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 827]
+    coordinate: [352, 848.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0_1
@@ -365,7 +367,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 779]
+    coordinate: [352, 800.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0_2
@@ -403,7 +405,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 739]
+    coordinate: [352, 760.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0_3
@@ -479,7 +481,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 539]
+    coordinate: [352, 560.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0_3_0_1
@@ -498,7 +500,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 579]
+    coordinate: [352, 600.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0_3_1
@@ -517,7 +519,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 699]
+    coordinate: [352, 720.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0_4
@@ -555,7 +557,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 659]
+    coordinate: [352, 680.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0_5
@@ -593,7 +595,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 619]
+    coordinate: [352, 640.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0_6
@@ -631,7 +633,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [368, 907]
+    coordinate: [360, 928.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0_7
@@ -650,7 +652,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [360, 875]
+    coordinate: [352, 896.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0_8
@@ -669,7 +671,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [836, 219]
+    coordinate: [816, 536.0]
     rotation: 180
     state: enabled
 - name: blocks_delay_0_8_0
@@ -688,7 +690,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [799, 675]
+    coordinate: [760, 96.0]
     rotation: 180
     state: enabled
 - name: pad_source_0
@@ -716,8 +718,8 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    alpha1: AlphaLineas
-    alpha10: '1.'
+    alpha1: '1'
+    alpha10: AlphaLineas
     alpha2: AlphaLineas
     alpha3: AlphaLineas
     alpha4: AlphaLineas
@@ -728,8 +730,8 @@ blocks:
     alpha9: AlphaLineas
     autoscale: 'False'
     axislabels: 'True'
-    color1: blue
-    color10: dark blue
+    color1: dark blue
+    color10: blue
     color2: red
     color3: green
     color4: black
@@ -743,19 +745,19 @@ blocks:
     entags: 'True'
     grid: 'False'
     gui_hint: 1,0
-    label1: D
-    label10: D
-    label2: D
-    label3: D
-    label4: D
-    label5: D
-    label6: D
-    label7: D
-    label8: D
-    label9: D
+    label1: Timing
+    label10: .
+    label2: .
+    label3: .
+    label4: .
+    label5: .
+    label6: .
+    label7: .
+    label8: .
+    label9: .
     legend: 'True'
-    marker1: '-1'
-    marker10: '0'
+    marker1: '0'
+    marker10: '-1'
     marker2: '-1'
     marker3: '-1'
     marker4: '-1'
@@ -764,7 +766,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: Parte Real
+    name: Real Part
     nconnections: '10'
     size: int(Sps*N_eyes)
     srate: Samprate
@@ -787,8 +789,8 @@ blocks:
     tr_tag: '""'
     type: float
     update_time: '0.10'
-    width1: GrosorLineas
-    width10: '1'
+    width1: '1'
+    width10: GrosorLineas
     width2: GrosorLineas
     width3: GrosorLineas
     width4: GrosorLineas
@@ -813,7 +815,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    alpha1: AlphaLineas
+    alpha1: '1'
     alpha10: '1.'
     alpha2: AlphaLineas
     alpha3: AlphaLineas
@@ -825,8 +827,8 @@ blocks:
     alpha9: AlphaLineas
     autoscale: 'False'
     axislabels: 'True'
-    color1: blue
-    color10: dark blue
+    color1: dark blue
+    color10: blue
     color2: red
     color3: green
     color4: black
@@ -840,19 +842,19 @@ blocks:
     entags: 'True'
     grid: 'False'
     gui_hint: 1,1
-    label1: D
-    label10: D
-    label2: D
-    label3: D
-    label4: D
-    label5: D
-    label6: D
-    label7: D
-    label8: D
-    label9: D
+    label1: Timing
+    label10: .
+    label2: .
+    label3: .
+    label4: .
+    label5: .
+    label6: .
+    label7: .
+    label8: .
+    label9: .
     legend: 'True'
-    marker1: '-1'
-    marker10: '0'
+    marker1: '0'
+    marker10: '-1'
     marker2: '-1'
     marker3: '-1'
     marker4: '-1'
@@ -861,7 +863,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: Parte Imaginaria
+    name: Imaginary part
     nconnections: '10'
     size: int(Sps*N_eyes)
     srate: Samprate
@@ -884,8 +886,8 @@ blocks:
     tr_tag: '""'
     type: float
     update_time: '0.10'
-    width1: GrosorLineas
-    width10: '1'
+    width1: '1'
+    width10: GrosorLineas
     width2: GrosorLineas
     width3: GrosorLineas
     width4: GrosorLineas
@@ -902,7 +904,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [24, 593]
+    coordinate: [16, 616.0]
     rotation: 180
     state: enabled
 
@@ -929,26 +931,26 @@ connections:
 - [blocks_complex_to_float_0_0, '1', blocks_delay_0_6_0, '0']
 - [blocks_complex_to_float_0_0, '1', blocks_delay_0_7, '0']
 - [blocks_complex_to_float_0_0, '1', blocks_delay_0_8, '0']
-- [blocks_delay_0, '0', qtgui_time_sink_x_0_0_0, '1']
-- [blocks_delay_0_0, '0', qtgui_time_sink_x_0_0_0, '2']
-- [blocks_delay_0_0_0, '0', qtgui_time_sink_x_0_0_0_0, '2']
-- [blocks_delay_0_1, '0', qtgui_time_sink_x_0_0_0, '3']
-- [blocks_delay_0_1_0, '0', qtgui_time_sink_x_0_0_0_0, '3']
-- [blocks_delay_0_2, '0', qtgui_time_sink_x_0_0_0, '4']
-- [blocks_delay_0_2_0, '0', qtgui_time_sink_x_0_0_0_0, '4']
-- [blocks_delay_0_3, '0', qtgui_time_sink_x_0_0_0, '5']
-- [blocks_delay_0_3_0, '0', qtgui_time_sink_x_0_0_0, '8']
-- [blocks_delay_0_3_0_0, '0', qtgui_time_sink_x_0_0_0, '9']
-- [blocks_delay_0_3_0_0_0, '0', qtgui_time_sink_x_0_0_0_0, '9']
-- [blocks_delay_0_3_0_1, '0', qtgui_time_sink_x_0_0_0_0, '8']
-- [blocks_delay_0_3_1, '0', qtgui_time_sink_x_0_0_0_0, '5']
-- [blocks_delay_0_4, '0', qtgui_time_sink_x_0_0_0, '6']
-- [blocks_delay_0_4_0, '0', qtgui_time_sink_x_0_0_0_0, '6']
-- [blocks_delay_0_5, '0', qtgui_time_sink_x_0_0_0, '7']
-- [blocks_delay_0_5_0, '0', qtgui_time_sink_x_0_0_0_0, '7']
-- [blocks_delay_0_6, '0', qtgui_time_sink_x_0_0_0, '0']
-- [blocks_delay_0_6_0, '0', qtgui_time_sink_x_0_0_0_0, '0']
-- [blocks_delay_0_7, '0', qtgui_time_sink_x_0_0_0_0, '1']
+- [blocks_delay_0, '0', qtgui_time_sink_x_0_0_0, '8']
+- [blocks_delay_0_0, '0', qtgui_time_sink_x_0_0_0, '7']
+- [blocks_delay_0_0_0, '0', qtgui_time_sink_x_0_0_0_0, '7']
+- [blocks_delay_0_1, '0', qtgui_time_sink_x_0_0_0, '6']
+- [blocks_delay_0_1_0, '0', qtgui_time_sink_x_0_0_0_0, '6']
+- [blocks_delay_0_2, '0', qtgui_time_sink_x_0_0_0, '5']
+- [blocks_delay_0_2_0, '0', qtgui_time_sink_x_0_0_0_0, '5']
+- [blocks_delay_0_3, '0', qtgui_time_sink_x_0_0_0, '4']
+- [blocks_delay_0_3_0, '0', qtgui_time_sink_x_0_0_0, '1']
+- [blocks_delay_0_3_0_0, '0', qtgui_time_sink_x_0_0_0, '0']
+- [blocks_delay_0_3_0_0_0, '0', qtgui_time_sink_x_0_0_0_0, '0']
+- [blocks_delay_0_3_0_1, '0', qtgui_time_sink_x_0_0_0_0, '1']
+- [blocks_delay_0_3_1, '0', qtgui_time_sink_x_0_0_0_0, '4']
+- [blocks_delay_0_4, '0', qtgui_time_sink_x_0_0_0, '3']
+- [blocks_delay_0_4_0, '0', qtgui_time_sink_x_0_0_0_0, '3']
+- [blocks_delay_0_5, '0', qtgui_time_sink_x_0_0_0, '2']
+- [blocks_delay_0_5_0, '0', qtgui_time_sink_x_0_0_0_0, '2']
+- [blocks_delay_0_6, '0', qtgui_time_sink_x_0_0_0, '9']
+- [blocks_delay_0_6_0, '0', qtgui_time_sink_x_0_0_0_0, '9']
+- [blocks_delay_0_7, '0', qtgui_time_sink_x_0_0_0_0, '8']
 - [blocks_delay_0_8, '0', E3TRadio_diezmoppenh3_ff_0_0, '0']
 - [blocks_delay_0_8_0, '0', E3TRadio_diezmoppenh3_ff_0, '0']
 - [pad_source_0, '0', blocks_complex_to_float_0_0, '0']

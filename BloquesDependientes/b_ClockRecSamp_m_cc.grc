@@ -2,7 +2,7 @@ options:
   parameters:
     author: 'Done by: Homero Ortega Boada. Universidad Industrial de Santander'
     catch_exceptions: 'True'
-    category: comdiguis
+    category: '''[comdiguis]'''
     cmake_opt: ''
     comment: ''
     copyright: Grupo RadioGis Universidad Industrial de Santander
@@ -33,6 +33,7 @@ options:
     sizing_mode: fixed
     thread_safe_setters: ''
     title: b_ClockRecSamp_m
+    window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false
@@ -193,10 +194,12 @@ blocks:
   id: b_Eye_Diagram_c
   parameters:
     AlphaLineas: '0.5'
+    Delay_i: '0'
     GrosorLineas: '20'
     N_eyes: '2'
     Samprate: samp_rate
     Sps: Sps
+    Title: '"Eye Diagramm"'
     Ymax: '1.5'
     Ymin: '-1.5'
     affinity: ''

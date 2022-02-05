@@ -2,7 +2,7 @@ options:
   parameters:
     author: Andres Carrillo
     catch_exceptions: 'True'
-    category: comdiguis
+    category: '''[comdiguis]'''
     cmake_opt: ''
     comment: ''
     copyright: b_FDM_Monousuario
